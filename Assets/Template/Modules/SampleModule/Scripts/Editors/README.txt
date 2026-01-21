@@ -1,0 +1,1 @@
+This is used to custome Editor, for example how a script would show and behave on the inspector
