@@ -1,1 +1,0 @@
-Audio should be trim for better performance.
