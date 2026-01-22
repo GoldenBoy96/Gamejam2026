@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     [CreateAssetMenu(fileName = "Template", menuName = "ScriptableObjects/Template", order = 0)]
     [Serializable]

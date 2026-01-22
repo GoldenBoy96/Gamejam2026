@@ -69,7 +69,9 @@
     },
     "dotnet.defaultSolution": "Gamejam2026.slnx",
     "cSpell.words": [
+        "behaviours",
         "Deltatime",
+        "Gamejam",
         "Lerp",
         "Mathf"
     ]

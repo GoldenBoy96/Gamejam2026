@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     [Serializable]
     public class BaseBehaviour
@@ -9,7 +9,7 @@ namespace GameName
         protected GameObject _owner;
         protected GameObject _target;
 
-        public void SetOwner(GameObject owner)
+        public void Setup(GameObject owner)
         {
             _owner = owner;
         }
