@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
-namespace GameName
+namespace Gamejam2026
 {
     /// <summary>
     /// This class is optional. You can call directly to AudioManager from any script

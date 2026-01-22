@@ -2,7 +2,7 @@ using OurUtils;
 using TMPro;
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     public class TemplateUIController : SingletonMono<TemplateUIController>, IUIController
     {

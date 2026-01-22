@@ -1,23 +1,31 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     public class MovingPlatform : MonoBehaviour
     {
         [SerializeField] private GameObject _platformObject;
         [SerializeField] private BehaviourCyclicalMovement _cyclicalMovementBehaviour;
 
-        private void Awake()
+        void Start()
         {
-            _cyclicalMovementBehaviour.SetOwner(_platformObject);
+            // Only for testing purposes, in the future this should be called by a Parent Manager
+            Setup();
+            StartBehaviour();
         }
 
-        void Start()
+        public void Setup()
+        {
+            _cyclicalMovementBehaviour.Setup(_platformObject);
+        }
+
+        public void StartBehaviour()
         {
             _cyclicalMovementBehaviour.StartBehaviour();
         }
 
-        void Update()
+       public void UpdateBehaviour()
         {
             _cyclicalMovementBehaviour.OnUpdateBehaviour();
         }
