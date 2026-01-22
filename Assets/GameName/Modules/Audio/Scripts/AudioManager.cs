@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 using Unity.VisualScripting;
 using static Unity.VisualScripting.Member;
 
-namespace GameName
+namespace Gamejam2026
 {
     /// <summary>
     /// Store and manage audios need for a scene

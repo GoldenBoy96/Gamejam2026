@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     public class TemplateConstants
     {

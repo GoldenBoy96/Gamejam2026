@@ -7,8 +7,7 @@ namespace OurUtils
 {
     public class ObserverService : SingletonMono<ObserverService>
     {
-        Dictionary<string, List<Action<object[]>>> Listeners =
-           new();
+        Dictionary<string, List<Action<object[]>>> Listeners = new();
 
         public void RegisterListener(string name, Action<object[]> callback)
         {

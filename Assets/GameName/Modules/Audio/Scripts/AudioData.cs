@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     [Serializable]
     public class AudioData : ICloneable<AudioData>

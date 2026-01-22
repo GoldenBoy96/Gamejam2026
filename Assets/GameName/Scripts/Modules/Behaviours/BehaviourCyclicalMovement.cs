@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GameName
+namespace Gamejam2026
 {
     [Serializable]
     public class BehaviourCyclicalMovement : BaseBehaviour
