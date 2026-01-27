@@ -2,15 +2,7 @@ using UnityEngine;
 
 public class SystemManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameObject _lobbyUI; 
+    [SerializeField] private GameObject _gameplayUI; 
+    [SerializeField] private GameObject _gameplayPrefab; 
 }
