@@ -1,5 +1,6 @@
 ﻿using OurUtils;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Gamejam2026
 {
@@ -24,6 +25,8 @@ namespace Gamejam2026
         public PlayerState_Inflate stateInflate;
         public PlayerState_GroundPound stateGroundPound;
 
+        [Header("--- UI DEBUG ---")]
+        public Slider staminaSlider; // Kéo Slider vào đây
 
         public float inputY;
 
@@ -56,6 +59,12 @@ namespace Gamejam2026
 
             // 3. Check Ground
             CheckGround();
+
+            if (staminaSlider != null)
+            {
+                // Tính tỉ lệ phần trăm (Hiện tại / Tối đa)
+                staminaSlider.value = model.currentStamina / config.maxStamina;
+            }
         }
 
         private void GatherInput()

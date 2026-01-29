@@ -9,36 +9,34 @@ namespace Gamejam2026
             base.OnStateEnter(controller);
             Debug.Log(">> GROUND POUND: Lao xuống!");
 
-            // Reset vận tốc về 0 để dừng trượt
+            // 1. Dừng khựng lại trên không (Xóa quán tính cũ)
             player.Rb.linearVelocity = Vector2.zero;
             player.Rb.gravityScale = 0;
-            player.Rb.linearDamping = 0; // Bỏ lực cản để lao cho nhanh
+            player.Rb.linearDamping = 0; // Tắt drag để lao cho nhanh
 
-            // Bắn lực xuống cực mạnh
+            // 2. Bắn lực xuống cực mạnh
             player.Rb.AddForce(Vector2.down * player.config.groundPoundForce, ForceMode2D.Impulse);
         }
 
         public override void OnStateUpdate()
         {
-            // Khóa hoàn toàn di chuyển ngang
+            if (player == null) return;
+
+            // 1. Khóa di chuyển ngang (Chỉ cho phép lao thẳng đứng)
             player.Rb.linearVelocity = new Vector2(0, player.Rb.linearVelocity.y);
 
-            // Chạm đất
+            // 2. Kiểm tra chạm đất
             if (player.IsGrounded)
             {
-                ImpactDamage();
+                DoImpactDamage();
                 player.ChangeToState(player.stateNormal);
             }
         }
 
-        private void ImpactDamage()
+        private void DoImpactDamage()
         {
-            // Logic gây damage diện rộng
-            Debug.Log($"<color=red>BÙM! Gây damage bán kính {player.config.groundPoundDamageRadius}m</color>");
-
-            // Code mẫu tìm quái (dùng sau này):
-            // Collider2D[] hits = Physics2D.OverlapCircleAll(player.transform.position, player.config.groundPoundDamageRadius);
-            // foreach(var hit in hits) { if(hit là quái) gây damage }
+            // Hiệu ứng rung màn hình hay nổ sẽ gọi ở đây
+            Debug.Log($"<color=red>BÙM!!! Gây sát thương bán kính {player.config.groundPoundDamageRadius}m</color>");
         }
 
         public override void OnStateExit()
@@ -46,6 +44,7 @@ namespace Gamejam2026
             base.OnStateExit();
             if (player != null)
             {
+                // Trả lại trọng lực gốc
                 player.Rb.gravityScale = player.DefaultGravity;
             }
         }

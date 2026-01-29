@@ -1,0 +1,2533 @@
+Assets\GameName\DirtyPlace\README.txt:
+<code>
+Do whatever you want in this place even though how dirty they are!
+Ensure to add this dir to gitignore before using.
+Ensure to isolate anything inside this from the rest of the project.
+</code>
+
+Assets\GameName\Modules\Audio\Resources\Prefabs\AudioManager.prefab:
+<code>
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5346194880976322340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5676130804682815405}
+  - component: {fileID: 8559804235120786107}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5676130804682815405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346194880976322340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8559804235120786107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346194880976322340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cef3123e072bb4d8c162b2077beaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingTimeOut: 1
+  audioDatas:
+  - clip: {fileID: 0}
+    volume: 0
+    audioSource: {fileID: 0}
+    audioName: 
+
+</code>
+
+Assets\GameName\Modules\Audio\Scripts\AudioData.cs:
+<code>
+﻿using OurUtils;
+using System;
+using System.Collections;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [Serializable]
+    public class AudioData : ICloneable<AudioData>
+    {
+        [SerializeField] private AudioClip _clip;
+        [Range(0.0f, 1.0f)]
+        [SerializeField] private float _volume;
+        public AudioClip Clip { get => _clip; set => _clip = value; }
+        public float Volume { get => _volume; set => _volume = value; }
+        public string AudioName { get => _clip.name;}
+
+        public override string ToString()
+        {
+            return $"{{{nameof(Clip)}={Clip}, {nameof(Volume)}={Volume.ToString()}, {nameof(AudioName)}={AudioName}}}";
+        }
+    }
+
+}
+</code>
+
+Assets\GameName\Modules\Audio\Scripts\AudioDataSO.cs:
+<code>
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [CreateAssetMenu(fileName = "AudioData", menuName = "ScriptableObjects/AudioData", order = 0)]
+    [Serializable]
+    public class AudioDataSO : ScriptableObject
+    {
+        [SerializeField] private List<AudioData> _soundList = new();
+        [SerializeField] private List<AudioData> _musicList = new();
+
+        public List<AudioData> SoundList { get => _soundList; set => _soundList = value; }
+        public List<AudioData> MusicList { get => _musicList; set => _musicList = value; }
+    }
+}
+</code>
+
+Assets\GameName\Modules\Audio\Scripts\AudioManager.cs:
+<code>
+using System.Collections.Generic;
+using System;
+using UnityEngine;
+using System.Collections;
+using System.Linq;
+using OurUtils;
+using UnityEngine.Audio;
+using Unity.VisualScripting;
+using static Unity.VisualScripting.Member;
+
+namespace Gamejam2026
+{
+    /// <summary>
+    /// Store and manage audios need for a scene
+    /// </summary>
+    public class AudioManager : SingletonMono<AudioManager>
+    {
+        [Header("Data")]
+        [SerializeField] AudioDataSO _audioDataSO;
+        [SerializeField] private List<AudioData> _soundList = new();
+        [SerializeField] private List<AudioData> _musicList = new();
+
+        private AudioSource _musicAudioSource;
+        List<AudioSource> _availableSoundSource = new();
+        List<AudioSource> _busySoundSource = new();
+
+        private void Start()
+        {
+            _musicAudioSource = gameObject.AddComponent<AudioSource>();
+            StartCoroutine(CleanAudioSourceCoroutine());
+        }
+
+        public void SetAudioData(AudioDataSO data)
+        {
+            //TO DO: Clean old data
+            _audioDataSO = data;
+            _soundList = new(_audioDataSO.SoundList);
+            _musicList = new(_audioDataSO.MusicList);
+
+        }
+
+
+        #region Audio Play
+        private float GetSoundFinalVolume(float selfVolume)
+        {
+            return _soundVolume * _masterVolume * selfVolume;
+        }
+        private float GetMusicFinalVolume(float selfVolume)
+        {
+            return _musicVolume * _masterVolume * selfVolume;
+        }
+
+        private AudioData FindSoundAudioData(string audioName)
+        {
+            return _soundList.FirstOrDefault(x => x.AudioName.Equals(audioName));
+        }
+        private AudioData FindMusicAudioData(string audioName)
+        {
+            return _musicList.FirstOrDefault(x => x.AudioName.Equals(audioName));
+        }
+
+        public void PlaySound(string audioName)
+        {
+            AudioSource audioSource = null;
+            if (_availableSoundSource.Count == 0)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                _busySoundSource.Add(audioSource);
+            }
+            else
+            {
+                audioSource = _availableSoundSource[0];
+                _availableSoundSource.Remove(audioSource);
+                _busySoundSource.Add(audioSource);
+            }
+
+            AudioData audioData = FindSoundAudioData(audioName);
+            if (audioData != null)
+            {
+                audioSource.clip = audioData.Clip;
+                audioSource.clip.LoadAudioData();
+                audioSource.loop = false;
+                audioSource.volume = GetSoundFinalVolume(audioData.Volume);
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError($"Audio {audioName} not found!");
+            }
+        }
+
+        public void PlayMusic(string audioName)
+        {
+
+            AudioData audioData = FindMusicAudioData(audioName);
+            if (audioData == null)
+            {
+                Debug.LogError($"Audio {audioName} not found!");
+                return;
+            }
+            if (_musicAudioSource.isPlaying)
+            {
+                _musicAudioSource.Stop();
+            }
+
+            _musicAudioSource.clip = audioData.Clip;
+            _musicAudioSource.clip.LoadAudioData();
+            _musicAudioSource.loop = true;
+            _musicAudioSource.volume = GetMusicFinalVolume(audioData.Volume);
+            _musicAudioSource.Play();
+        }
+
+        public void StopMusic()
+        {
+            _musicAudioSource.Stop();
+        }
+
+        private void SetPlayingSoundVolume()
+        {
+            foreach (var source in _busySoundSource)
+            {
+                AudioData audioData = FindSoundAudioData(source.clip.name);
+                source.volume = GetSoundFinalVolume(audioData.Volume);
+            }
+        }
+
+        private void SetPlayingMusicVolume()
+        {
+            if (_musicAudioSource.isPlaying)
+            {
+                AudioData audioData = FindSoundAudioData(_musicAudioSource.clip.name);
+                _musicAudioSource.volume = GetMusicFinalVolume(audioData.Volume);
+            }
+        }
+
+        IEnumerator CleanAudioSourceCoroutine()
+        {
+            yield return new WaitForSeconds(1.0f);
+            foreach (var source in _busySoundSource.ToList())
+            {
+                if (!source.isPlaying)
+                {
+
+                    _availableSoundSource.Add(source);
+                    _busySoundSource.Remove(source);
+                }
+            }
+            StartCoroutine(CleanAudioSourceCoroutine());
+        }
+
+        #endregion
+
+
+        #region Audio Setting
+        const string KEY_VIBRATE = "VIBRATE";
+        const string KEY_SOUND = "SOUND";
+        const string KEY_MUSIC = "MUSIC";
+        const string KEY_VIBRATE_STRENGHT = "VIBRATE_STRENGHT";
+        const string KEY_SOUND_VOLUME = "SOUND_VOLUME";
+        const string KEY_MUSIC_VOLUME = "MUSIC_VOLUME";
+        const string KEY_MASTER_VOLUME = "MUSIC_VOLUME";
+
+        [Header("Audio Setting")]
+        [SerializeField] private bool _isEnableSound;
+        [SerializeField] private bool _isEnableMusic;
+        [SerializeField] private bool _isEnableVibrate;
+
+        [Range(0f, 1f)]
+        [SerializeField] private float _masterVolume = 0.5f;
+        [Range(0f, 1f)]
+        [SerializeField] private float _soundVolume = 0.5f;
+        [Range(0f, 1f)]
+        [SerializeField] private float _musicVolume = 0.5f;
+        public bool IsEnableSound
+        {
+            get
+            {
+                return _isEnableSound;
+            }
+            set
+            {
+                _isEnableSound = value;
+                Save(KEY_SOUND, _isEnableSound);
+            }
+        }
+
+        public bool IsEnableVibrate
+        {
+            get
+            {
+                return _isEnableVibrate;
+            }
+            set
+            {
+                _isEnableVibrate = value;
+                Save(KEY_VIBRATE, _isEnableVibrate);
+            }
+        }
+
+        public bool IsEnableMusic
+        {
+            get
+            {
+                return _isEnableMusic;
+            }
+            set
+            {
+                _isEnableMusic = value;
+                Save(KEY_MUSIC, _isEnableMusic);
+                _musicAudioSource.mute = !value;
+                if (_musicAudioSource.mute)
+                {
+                    _musicAudioSource.Pause();
+                }
+                else
+                {
+                    _musicAudioSource.Play();
+                }
+            }
+        }
+
+        public float MasterVolume
+        {
+            get => _masterVolume;
+            set
+            {
+                _masterVolume = value;
+                Save(KEY_MASTER_VOLUME, _masterVolume);
+                SetPlayingMusicVolume();
+                SetPlayingSoundVolume();
+            }
+        }
+        public float SoundVolume
+        {
+            get => _soundVolume;
+            set
+            {
+                _soundVolume = value;
+                Save(KEY_SOUND_VOLUME, _soundVolume);
+                SetPlayingSoundVolume();
+            }
+        }
+        public float MusicVolume
+        {
+            get => _musicVolume;
+            set
+            {
+                _musicVolume = value;
+                Save(KEY_MUSIC_VOLUME, _musicVolume);
+                SetPlayingMusicVolume();
+            }
+        }
+
+        public void ToggleSfx()
+        {
+            IsEnableSound = !_isEnableSound;
+        }
+
+        public void ToggleMusic()
+        {
+            IsEnableMusic = !_isEnableMusic;
+        }
+
+        public void ToggleVibrate()
+        {
+            IsEnableVibrate = !_isEnableVibrate;
+        }
+        private void Save(string key, bool value)
+        {
+            UnityEngine.PlayerPrefs.SetInt(key, value ? 1 : 0);
+            UnityEngine.PlayerPrefs.Save();
+        }
+        private void Save(string key, float value)
+        {
+            UnityEngine.PlayerPrefs.SetFloat(key, value);
+            UnityEngine.PlayerPrefs.Save();
+        }
+
+        private bool Load(string key, bool defaultValue)
+        {
+            var value = defaultValue;
+            if (UnityEngine.PlayerPrefs.HasKey(key))
+            {
+                value = UnityEngine.PlayerPrefs.GetInt(key) != 0;
+            }
+            return value;
+        }
+        private float Load(string key, float defaultValue)
+        {
+            var value = defaultValue;
+            if (UnityEngine.PlayerPrefs.HasKey(key))
+            {
+                value = UnityEngine.PlayerPrefs.GetFloat(key);
+            }
+            return value;
+        }
+        #endregion
+
+
+    }
+
+
+}
+</code>
+
+Assets\GameName\Modules\Audio\Scripts\TemplateAudioController.cs:
+<code>
+﻿
+using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+
+namespace Gamejam2026
+{
+    /// <summary>
+    /// This class is optional. You can call directly to AudioManager from any script
+    /// </summary>
+    public class TemplateAudioController : MonoBehaviour
+    {
+        [SerializeField] AudioDataSO _audioDataSO;
+
+        private void Start()
+        {
+            AudioManager.Instance.SetAudioData(_audioDataSO);
+        }
+        public void PlayRandomSound()
+        {
+            int ran = Random.Range(0, 4);
+            switch (ran)
+            {
+                case 0:
+                    AudioManager.Instance.PlaySound(TemplateAudioConstants.eating);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlaySound(TemplateAudioConstants.gaining_experience);
+                    break;
+                case 2:
+                    AudioManager.Instance.PlaySound(TemplateAudioConstants.open_chest);
+                    break;
+                case 3:
+                    AudioManager.Instance.PlaySound(TemplateAudioConstants.zombie_roar);
+                    break;
+            }
+        }
+        public void PlayRandomMusic()
+        {
+            int ran = Random.Range(0, 2);
+            switch (ran)
+            {
+                case 0:
+                    AudioManager.Instance.PlayMusic(TemplateAudioConstants.it_going_down_now);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlayMusic(TemplateAudioConstants.ryukyuvania);
+                    break;
+            }
+        }
+
+        public void StopMusic()
+        {
+            AudioManager.Instance.StopMusic();
+        }
+    }
+
+    /// <summary>
+    /// Create a constants class for each Audio Combo
+    /// Audio file name must match with Audio name constant
+    /// </summary>
+    public static class TemplateAudioConstants
+    {
+        //Music
+        public const string it_going_down_now = "it_going_down_now";
+        public const string ryukyuvania = "ryukyuvania";
+
+        //Sound
+        public const string eating = "eating";
+        public const string gaining_experience = "gaining_experience";
+        public const string open_chest = "open_chest";
+        public const string zombie_roar = "zombie_roar";
+    }
+}
+
+</code>
+
+Assets\GameName\Modules\TMPConsole\TMPConsoleController.cs:
+<code>
+using OurUtils;
+using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace SushiGame2048
+{
+    public class TMPConsoleController : SingletonMono<TMPConsoleController>
+    {
+        [SerializeField] private TMP_Text _logText;
+        [SerializeField] private ScrollRect _scrollRect;
+
+        private void Start()
+        {
+            if (_logText == null)
+                Debug.LogError("LogText is not assigned!");
+
+            if (_scrollRect == null)
+                Debug.LogError("Scrollbar is not assigned!");
+        }
+
+        public void Log(string message, GameObject sender)
+        {
+            // Append the new message
+            string timestamp = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+            message = $"\n[{timestamp} {sender.name}]\n" + message;
+            _logText.text += message + "\n";
+
+            // Force the Canvas to rebuild to update the Scrollbar
+            Canvas.ForceUpdateCanvases();
+
+            // Scroll to the bottom
+            _scrollRect.verticalNormalizedPosition = 0f;
+        }
+        public void LogError(string message, GameObject sender)
+        {
+            // Append the new message
+            string timestamp = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+            message = $"\n[{timestamp} {sender.name}]\n" + message;
+            _logText.text += $"<color=red>{message}</color>" + "\n";
+
+            // Force the Canvas to rebuild to update the Scrollbar
+            Canvas.ForceUpdateCanvases();
+
+            // Scroll to the bottom
+            _scrollRect.verticalNormalizedPosition = 0f;
+        }
+
+        public void Input(string message, GameObject owner, Action onSuccess, Action onError)
+        {
+
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Constants\README.txt:
+<code>
+This is used to list all constants to use in the module to avoid hard code and spelling error
+Example: Use constants for api string, file path/name, message, event...
+</code>
+
+Assets\GameName\Scripts\Constants\TemplateConstants.cs:
+<code>
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class TemplateConstants
+    {
+        public const string TEMPLATE_STRING = "TEMPLATE_STRING";
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Controllers\TemplateController\TemplateController.cs:
+<code>
+using OurUtils;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class TemplateController : StateControllerMono, IReset
+    {
+        //The Controller should be used to control State
+        //Logic Handle should be put in each State
+        [Header("Init Data")]
+        [SerializeField] private TemplateModel _templateModel;
+
+        [Header("Child Component")]
+        [SerializeField] private Transform _childComponent;
+
+        [Header("Runtime")]
+        [SerializeField] private TemplateModel _runtimeModel;
+
+        [Header("State Machine")]
+        [SerializeField] private StateA _stateA = new();
+        [SerializeField] private StateB _stateB = new();
+
+        public TemplateModel Data { get => _runtimeModel; set => _runtimeModel = value; }
+
+        public void Reset()
+        {
+            //TO DO: Reset controller
+
+            //Reset runtime model to protect fixed data/scriptable object
+            _runtimeModel = ((ICloneable<TemplateModel>)_templateModel).CloneSelf();
+
+            //Assign default state
+            ChangeToState(_stateA);
+
+        }
+
+        public void ReceiveData(TemplateModel data)
+        {
+            //TO DO: Do some thing with model (CRUD)
+            _runtimeModel = data;
+        }
+
+        public TemplateModel SendData()
+        {
+            return _runtimeModel;
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Editors\README.txt:
+<code>
+This is used to custome Editor, for example how a script would show and behave on the inspector
+</code>
+
+Assets\GameName\Scripts\Enums\TemplateEnum.cs:
+<code>
+namespace Gamejam2026
+{
+    public enum TemplateEnum
+    {
+        Default,
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Models\TemplateModel.cs:
+<code>
+using OurUtils;
+using System;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [Serializable]
+    public class TemplateModel : ICloneable<TemplateModel>
+    {
+        //For easier serialization, [Serializable] must be added to the class
+        //and [SerializeField] must be added to each field
+        //Do not inherit MonoBehaviour!!!
+        [SerializeField] string _fieldOne;
+        [SerializeField] string _fieldTwo;
+
+        //Public field is banned! All fields should be encapsulated.
+        //Properties should be used instead to show stack traces while debugging.
+        //To prevent public modification, use "private set"
+        public string FieldOne { get => _fieldOne; set => _fieldOne = value; }
+        public string FieldTwo { get => _fieldTwo; private set => _fieldTwo = value; }
+
+        public void TemplateMethod()
+        {
+            //This public method usually be used to verify data
+        }
+
+    }
+
+}
+</code>
+
+Assets\GameName\Scripts\Models\TemplateSO.cs:
+<code>
+﻿using System;
+using System.Collections;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [CreateAssetMenu(fileName = "Template", menuName = "ScriptableObjects/Template", order = 0)]
+    [Serializable]
+    public class TemplateSO : ScriptableObject
+    {
+        [SerializeField] TemplateModel data;
+
+        public TemplateModel Data { get => data; private set => data = value; }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Modules\Behaviours\BaseBehaviour.cs:
+<code>
+using System;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [Serializable]
+    public class BaseBehaviour
+    {
+        protected GameObject _owner;
+        protected GameObject _target;
+
+        public void Setup(GameObject owner)
+        {
+            _owner = owner;
+        }
+
+        public void SetTarget(GameObject target)
+        {
+            _target = target;
+        }
+        public virtual void StartBehaviour() { }
+        public virtual void OnUpdateBehaviour() { }
+        public virtual void StopBehaviour() { }
+        public virtual void ResetBehaviour() { }
+
+    }
+}
+
+</code>
+
+Assets\GameName\Scripts\Modules\Behaviours\BehaviorAddForce.cs:
+<code>
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class BehaviorAddForce : MonoBehaviour
+    {
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Modules\Behaviours\BehaviourCyclicalMovement.cs:
+<code>
+using System;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [Serializable]
+    public class BehaviourCyclicalMovement : BaseBehaviour
+    {
+        protected Vector3 _originalPosition; // Set by get the owner's position when start
+        [SerializeField] WaypointData[] _waypointData = new WaypointData[0];
+
+        public BehaviourCyclicalMovement() : base()
+        {
+        }
+
+        public override void StartBehaviour()
+        {
+            base.StartBehaviour();
+            _originalPosition = _owner.transform.position;
+            _lastPosition = _originalPosition;
+            for (int i = 0; i < _waypointData.Length; i++)
+            {
+                if (_waypointData[i].waypointObjects != null)
+                {
+                    _waypointData[i].Waypoint = _waypointData[i].waypointObjects.transform.position;
+                }
+                else
+                {
+                    Debug.LogWarning("BehaviourCyclicalMovement: Waypoint Object is null at index: " + i);
+                }
+            }
+      
+        }
+
+        private float _currentWaypointIndex = 0;
+        private float _elapsedTime = 0f;
+
+        private Vector3 _lastPosition;
+        public override void OnUpdateBehaviour()
+        {
+            base.OnUpdateBehaviour();
+            if (_waypointData.Length == 0) return;
+
+            int currentIndex = (int)_currentWaypointIndex % _waypointData.Length;
+            WaypointData currentWaypoint = _waypointData[currentIndex];
+
+            _elapsedTime += Time.deltaTime;
+            float moveProgress = Mathf.Clamp01(_elapsedTime / currentWaypoint.moveToWaypointTimes);
+
+            Vector3 targetPosition = currentWaypoint.Waypoint;
+            _owner.transform.position = Vector3.Lerp(
+                _lastPosition,
+                targetPosition,
+                moveProgress);
+
+            if (moveProgress >= 1f)
+            {
+                _elapsedTime = 0;
+                _currentWaypointIndex++;
+                _lastPosition = _waypointData[currentIndex].Waypoint;
+            }
+        }
+
+        public override void ResetBehaviour()
+        {
+            base.ResetBehaviour();
+            _owner.transform.position = _originalPosition;
+        }
+
+    }
+
+    [Serializable]
+    class WaypointData
+    {
+        [SerializeField] public GameObject waypointObjects;
+        public Vector3 Waypoint { get; set; } = Vector3.zero;
+        [SerializeField] public float moveToWaypointTimes = 0;
+    }
+}
+
+</code>
+
+Assets\GameName\Scripts\Modules\Behaviours\BehaviourReceiveForce.cs:
+<code>
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class BehaviourReceiveForce : BaseBehaviour
+    {
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Modules\Obstancles\MovingPlatform.cs:
+<code>
+using Unity.VisualScripting;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class MovingPlatform : MonoBehaviour
+    {
+        [SerializeField] private GameObject _platformObject;
+        [SerializeField] private BehaviourCyclicalMovement _cyclicalMovementBehaviour;
+
+        void Start()
+        {
+            // Only for testing purposes, in the future this should be called by a Parent Manager
+            Setup();
+            StartBehaviour();
+        }
+
+        public void Setup()
+        {
+            _cyclicalMovementBehaviour.Setup(_platformObject);
+        }
+
+        public void StartBehaviour()
+        {
+            _cyclicalMovementBehaviour.StartBehaviour();
+        }
+
+       public void UpdateBehaviour()
+        {
+            _cyclicalMovementBehaviour.OnUpdateBehaviour();
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\CloneModel\ICloneable.cs:
+<code>
+using Newtonsoft.Json;
+
+namespace OurUtils
+{
+
+    //ICloneable interface provide a default clone method, support Reset method of controller
+    public interface ICloneable<T>
+    {
+        public T CloneSelf()
+        {
+            var serialized = JsonConvert.SerializeObject(this, Formatting.Indented);
+            return JsonConvert.DeserializeObject<T>(serialized);
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\Initialize\IInitialize.cs:
+<code>
+using UnityEngine;
+
+namespace OurUtils
+{
+    public interface IInitialize
+    {
+        /// <summary>
+        /// This method to 
+        /// </summary>
+        public void Initialize();
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\Json\JsonHelper.cs:
+<code>
+using Newtonsoft.Json;
+using System.IO;
+using System;
+using UnityEngine;
+
+namespace OurUtils
+{
+    public class JsonHelper
+    {
+        protected JsonHelper() { }
+
+        public static string Serialize(System.Object obj)
+        {
+            string json = JsonConvert.SerializeObject(obj, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        Formatting = Newtonsoft.Json.Formatting.Indented,
+                        ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    });
+            return json;
+        }
+
+        public static T Deserialize<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        public static T ReadData<T>(string filePath)
+        {
+            string jsonRead;
+            try
+            {
+                string extension = Path.GetExtension(filePath);
+                if (string.IsNullOrEmpty(extension))
+                {
+                    filePath += ".txt";
+                }
+                jsonRead = System.IO.File.ReadAllText(filePath);
+                return Deserialize<T>(jsonRead);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error reading file: {ex.Message}");
+                return default;
+            }
+        }
+
+        public static void SaveData(System.Object saveObject, string filePath)
+        {
+            //string json = JsonConvert.SerializeObject(saveObject, Formatting.Indented);
+
+            string json = Serialize(saveObject);
+
+            string extension = Path.GetExtension(filePath);
+            if (string.IsNullOrEmpty(extension))
+            {
+                filePath += ".txt";
+            }
+
+            string dirPath = Path.GetDirectoryName(filePath);
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
+            else
+            {
+                File.WriteAllText(filePath, string.Empty);
+            }
+
+            using (StreamWriter sw = (File.Exists(filePath)) ? File.AppendText(filePath) : File.CreateText(filePath))
+            {
+                sw.WriteLine(json);
+            }
+
+            Debug.Log($"Save file success at: {filePath}");
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\ObjectPooling\IReset.cs:
+<code>
+namespace OurUtils
+{
+    public interface IReset
+    {
+        public void Reset();
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\ObjectPooling\ObjectPooling.cs:
+<code>
+using System.Collections.Generic;
+using System;
+using UnityEngine;
+using System.Linq;
+
+namespace OurUtils
+{
+    public class ObjectPooling : SingletonMono<ObjectPooling>
+    {
+        public List<PoolObjectInfor> ObjectPools = new();
+
+        public GameObject SpawnObject(GameObject objectToSpawn, Transform parent, Vector3 spawnPosition, Quaternion spawnRotation)
+        {
+            if (objectToSpawn == null)
+            {
+                Debug.Log("Object To Spawn is null!");
+                return null;
+            }
+
+            PoolObjectInfor pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name);
+
+            //If the pool isn't exist, create it
+            if (pool == null)
+            {
+                pool = new PoolObjectInfor() { LookupString = objectToSpawn.name };
+                ObjectPools.Add(pool);
+            }
+
+            //Check if there are any inactive object in the pool
+            GameObject spawnableObject = null;
+            if (pool.InactiveObjects.Count > 0)
+            {
+                spawnableObject = pool.InactiveObjects.FirstOrDefault();
+            }
+
+            if (spawnableObject == null)
+            {
+                spawnableObject = Instantiate(objectToSpawn, parent);
+                spawnableObject.transform.SetLocalPositionAndRotation(spawnPosition, spawnRotation);
+            }
+            else
+            {
+                spawnableObject.transform.SetParent(parent);
+                spawnableObject.transform.SetLocalPositionAndRotation(spawnPosition, spawnRotation);
+                pool.InactiveObjects.Remove(spawnableObject);
+                spawnableObject.SetActive(true);
+
+            }
+
+            return spawnableObject;
+        }
+
+        public void ReturnObjectToPool(GameObject objectToPool)
+        {
+            if (objectToPool == null)
+            {
+                Debug.Log("Object To Return is null!");
+                return;
+            }
+            //Debug.Log("ReturnObjectToPool " + objectToPool.name);
+            string objectToPoolName = objectToPool.name.Replace("(Clone)", "").Trim();
+            PoolObjectInfor pool = ObjectPools.Find(p => p.LookupString.Equals(objectToPoolName));
+
+            //If the pool isn't exist, create it
+            if (pool == null)
+            {
+                Debug.LogWarning("Release an object that is not pooled!");
+                pool = new PoolObjectInfor() { LookupString = objectToPool.name };
+                ObjectPools.Add(pool);
+            }
+            else
+            {
+                objectToPool.SetActive(false);
+                pool.InactiveObjects.Add(objectToPool);
+            }
+        }
+
+        public void ClearPool()
+        {
+            int count = 0;
+            foreach (var pool in ObjectPools)
+            {
+                foreach (var obj in pool.InactiveObjects)
+                {
+                    Destroy(obj);
+                    count++;
+                }
+            }
+            ObjectPools = new();
+            Debug.Log($"Remove {count} game objects from pool!");
+        }
+    }
+
+    [Serializable]
+    public class PoolObjectInfor
+    {
+        public string LookupString;
+        public List<GameObject> InactiveObjects = new();
+
+    }
+}
+
+</code>
+
+Assets\GameName\Scripts\OurUtils\Observer\ObserverService.cs:
+<code>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace OurUtils
+{
+    public class ObserverService : SingletonMono<ObserverService>
+    {
+        Dictionary<string, List<Action<object[]>>> Listeners = new();
+
+        public void RegisterListener(string name, Action<object[]> callback)
+        {
+            if (!Listeners.ContainsKey(name))
+            {
+                Listeners.Add(name, new List<Action<object[]>>());
+            }
+
+            if (!Listeners[name].Contains(callback))
+            {
+                Listeners[name].Add(callback);
+            }
+        }
+
+        private void RemoveListener(string name, Action<object[]> callback)
+        {
+            if (!Listeners.ContainsKey(name))
+            {
+                return;
+            }
+
+            Listeners[name].Remove(callback);
+        }
+
+        public void Notify(string name, params object[] data)
+        {
+            if (!Listeners.ContainsKey(name))
+            {
+                return;
+            }
+
+            foreach (var callback in Listeners[name].ToList())
+            {
+                if (callback == null)
+                {
+                    RemoveListener(name, callback);
+                }
+                else
+                {
+                    callback.Invoke(data);
+                }
+            }
+        }
+
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\Singleton\SingletonMono.cs:
+<code>
+using UnityEngine;
+
+namespace OurUtils
+{
+    public class SingletonMono<T> : MonoBehaviour where T : MonoBehaviour
+    {
+        public static T Instance { get; private set; }
+        protected virtual void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this as T;
+            }
+            else
+            {
+                Debug.LogError("[SingletonMono<" + typeof(T).Name + ">] Creating new Instance but " + Instance.gameObject.name + " existed, destroying: " + gameObject.name);
+                Destroy(gameObject);
+            }
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\StateMachine\StateControllerMono.cs:
+<code>
+using UnityEngine;
+
+namespace OurUtils
+{
+    public class StateControllerMono : MonoBehaviour
+    {
+        [SerializeField] StateMono _currentState;
+
+        public StateMono CurrentState { get => _currentState; set => _currentState = value; }
+
+        private void Update()
+        {
+            _currentState.OnStateUpdate();
+        }
+        public void ChangeToState(StateMono newState)
+        {
+            if (_currentState != null)
+            {
+                if (CurrentState.Equals(newState))
+                {
+                    return;
+                }
+                CurrentState.OnStateExit();
+            }
+            CurrentState = newState;
+            CurrentState.OnStateEnter(this);
+        }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\StateMachine\StateMono.cs:
+<code>
+using UnityEngine;
+
+namespace OurUtils
+{
+    public abstract class StateMono : MonoBehaviour
+    {
+        protected StateControllerMono _stateController;
+
+        public virtual void OnStateEnter(StateControllerMono stateController)
+        {
+            this._stateController = stateController;
+        }
+
+        public virtual void OnStateUpdate()
+        {
+        }
+
+        public virtual void OnStateExit()
+        {
+        }
+
+    }
+}
+</code>
+
+Assets\GameName\Scripts\OurUtils\UI\IUIController.cs:
+<code>
+using UnityEngine;
+
+namespace OurUtils
+{
+    public interface IUIController
+    {
+        public bool IgnoredBackKey { get; set; }
+        public void OnStartUI() { }
+        public void OnActiveUI() { }
+        public void OnDeactiveUI() { }
+        public void OnRemoveUI() { }
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Views\UIComponent\DropdownViewportSizeByChildren.cs:
+<code>
+using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+/// <summary>
+/// For better display, set Template Content height same as Template Item height
+/// </summary>
+[RequireComponent(typeof(EventTrigger))]
+public class DropdownViewportSizeByChildren : MonoBehaviour
+{
+    [Header("Child Component")]
+    [SerializeField] TMP_Dropdown _dropdown;
+    [SerializeField] RectTransform _templateContent;
+    [SerializeField] RectTransform _templateItem;
+
+    [Header("Viewport size limit")]
+
+    [SerializeField] bool _makeTemplateContentAndItemSameHeight = false;
+    [SerializeField] bool _limitSize = false;
+    [SerializeField] int _maxChildShowAtATime = 5;
+
+    private EventTrigger _eventTrigger;
+
+    private void Start()
+    {
+        if (_makeTemplateContentAndItemSameHeight)
+        {
+            _templateContent.sizeDelta = new Vector2(
+                    _templateContent.sizeDelta.x,
+                    _templateItem.sizeDelta.y
+                );
+        }
+        SetViewportSize();
+        _eventTrigger = GetComponent<EventTrigger>();
+        EventTrigger.Entry entry = new()
+        {
+            eventID = EventTriggerType.PointerClick
+        };
+        entry.callback.AddListener((eventData) => { SetViewportSize(); });
+        _eventTrigger.triggers.Add(entry);
+    }
+
+    public void SetViewportSize()
+    {
+        StartCoroutine(SetViewPortSizeCoroutine());
+    }
+
+    private IEnumerator SetViewPortSizeCoroutine()
+    {
+        GameObject dropdownListObj = GameObject.Find("Dropdown List");
+        if (dropdownListObj != null)
+        {
+            dropdownListObj.TryGetComponent<RectTransform>(out var dropdownList);
+            if (dropdownList != null)
+            {
+                int itemNumber = _dropdown.options.Count;
+                if (_limitSize == true)
+                {
+                    if (itemNumber > _maxChildShowAtATime) itemNumber = _maxChildShowAtATime;
+                }
+
+                Debug.Log(_limitSize + " | " + itemNumber + " | " + _templateItem.rect.height + " | " + itemNumber * _templateItem.rect.height); 
+                Vector2 newSize = new(
+                    _templateContent.sizeDelta.x,
+                    itemNumber * _templateItem.rect.height
+                    );
+                dropdownList.sizeDelta = newSize;
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+                StartCoroutine(SetViewPortSizeCoroutine());
+
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(SetViewPortSizeCoroutine());
+
+        }
+    }
+}
+
+</code>
+
+Assets\GameName\Scripts\Views\UIComponent\README.txt:
+<code>
+This dir's Script describe how an UI Component visualize when an event is triggered. 
+
+</code>
+
+Assets\GameName\Scripts\Views\UIController\TemplateControllerUI\README.txt:
+<code>
+This UI Will Receive Input, send to its Controller, receive infor and show to Screen
+This should implement MonoBehaviour or StateMachine to decide how it interact with the Controller
+If this UI may just exist one on the whole scene, it should implement SingletonMono
+If this UI may exist many exist many instances, for example, child item on a table, do not implement SingletonMono
+</code>
+
+Assets\GameName\Scripts\Views\UIController\TemplateControllerUI\StateA.cs:
+<code>
+using OurUtils;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class StateA : StateMono
+    {
+        public override void OnStateEnter(StateControllerMono stateController)
+        {
+            base.OnStateEnter(stateController);
+            Debug.Log("Enter State A");
+        }
+        public override void OnStateUpdate()
+        {
+            base.OnStateUpdate();
+            Debug.Log("Update State A");
+        }
+
+        public override void OnStateExit()
+        {
+            base.OnStateExit();
+            Debug.Log("Exit State A");
+        }
+
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Views\UIController\TemplateControllerUI\StateB.cs:
+<code>
+using OurUtils;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class StateB : StateMono
+    {
+        public override void OnStateEnter(StateControllerMono stateController)
+        {
+            base.OnStateEnter(stateController);
+            Debug.Log("Enter State B");
+        }
+        public override void OnStateUpdate()
+        {
+            base.OnStateUpdate();
+            Debug.Log("Update State B");
+        }
+
+        public override void OnStateExit()
+        {
+            base.OnStateExit();
+            Debug.Log("Exit State B");
+        }
+
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Views\UIController\TemplateControllerUI\TemplateUIController.cs:
+<code>
+using OurUtils;
+using TMPro;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class TemplateUIController : SingletonMono<TemplateUIController>, IUIController
+    {
+        [SerializeField] TemplateController _controller;
+
+        [Header("Child UI GameObject/Component")]
+        [SerializeField] Transform _templateTransform;
+        [SerializeField] TMP_Text _templateText;
+
+        [Header("Prefab")]
+        [SerializeField] GameObject _templatePrefab;
+
+        [Header("Status")]
+        [SerializeField] bool _ignoredBackKey = false;
+
+        public bool IgnoredBackKey { get => _ignoredBackKey; set => _ignoredBackKey = value; }
+
+        public void Reset()
+        {
+            _controller.Reset();
+            _templateTransform.gameObject.SetActive(true);
+            //Destroy on child that instaniate in run time
+            _templateText.text = "Default text";
+        }
+
+        private void Update()
+        {
+            _controller.CurrentState.OnStateUpdate();
+        }
+
+        public void ReceiveInput()
+        {
+            _controller.ReceiveData(new());
+        }
+
+        public void ShowOutput()
+        {
+            Debug.Log(_controller.SendData());
+        }
+
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Views\UIManager\README.txt:
+<code>
+A UI Manager will initialize UI follow a flow; then manage which to show and which to hide
+
+This should include some Layer:
+- Base: Only 1 of UIs in this layer should be shown at a time. This layer order is at the bottom
+- Tab Group: a Tab Group contain many child Tab, only 1 tab in a group should be show at a time. The layer order is at mid
+- Pop up: Multi UIs in this layer can be show at the same time. The order should be top, the local order should be base on which pop up appear first
+</code>
+
+Assets\GameName\Scripts\Views\UIManager\TemplateUIManager.cs:
+<code>
+using NUnit.Framework;
+using OurUtils;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class TemplateUIManager : MonoBehaviour
+    {
+        [Header("Parent of UI")]
+        [SerializeField] Transform _baseLayerParent;
+        [SerializeField] Transform _tabLayerParent;
+        [SerializeField] Transform _popUpLayerParent;
+
+        [Header("Base Layer UI Prefab")]
+        [SerializeField] TemplateUIController _aaaUIControllerPrefab;
+        [SerializeField] TemplateUIController _bbbUIControllerPrefab;
+
+        private TemplateUIController _aaaUIController;
+        private TemplateUIController _bbbUIController;
+
+        private List<IUIController> _baseLayerUIs = new();
+        private IUIController _currentBaseUI;
+
+        public TemplateUIController AaaUIController { get => _aaaUIController; set => _aaaUIController = value; }
+        public TemplateUIController BbbUIController { get => _bbbUIController; set => _bbbUIController = value; }
+
+        void Start()
+        {
+            _aaaUIController = Instantiate(_aaaUIControllerPrefab, _baseLayerParent);
+            _bbbUIController = Instantiate(_bbbUIControllerPrefab, _baseLayerParent);
+
+            _baseLayerUIs = new()
+            {
+                _aaaUIController,
+                _bbbUIController,
+            };
+        }
+
+        public void SetBaseScreen(IUIController incomingUI)
+        {
+            if (_currentBaseUI == null)
+            {
+                _currentBaseUI = incomingUI;
+                _currentBaseUI.OnActiveUI();
+            }
+            else
+            {
+                if (_currentBaseUI != incomingUI)
+                {
+                    _currentBaseUI.OnDeactiveUI();
+                    _currentBaseUI = incomingUI;
+                    _currentBaseUI.OnActiveUI();
+                }
+            }
+        }
+    }
+}
+</code>
+
+Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt:
+<code>
+﻿)]｝〕〉》」』】〙〗〟’”｠»ヽヾーァィゥェォッャュョヮヵヶぁぃぅぇぉっゃゅょゎゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ々〻‐゠–〜?!‼⁇⁈⁉・、%,.:;。！？］）：；＝}¢°"†‡℃〆％，．
+</code>
+
+Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt:
+<code>
+﻿([｛〔〈《「『【〘〖〝‘“｟«$—…‥〳〴〵\［（{£¥"々〇＄￥￦ #
+</code>
+
+Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt:
+<code>
+This sample of beautiful emojis are provided by EmojiOne https://www.emojione.com/
+
+Please visit their website to view the complete set of their emojis and review their licensing terms.
+</code>
+
+Assets\TextMesh Pro\Sprites\EmojiOne.json:
+<code>
+{"frames": [
+
+{
+	"filename": "1f60a.png",
+	"frame": {"x":0,"y":0,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f60b.png",
+	"frame": {"x":128,"y":0,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f60d.png",
+	"frame": {"x":256,"y":0,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f60e.png",
+	"frame": {"x":384,"y":0,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f600.png",
+	"frame": {"x":0,"y":128,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f601.png",
+	"frame": {"x":128,"y":128,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f602.png",
+	"frame": {"x":256,"y":128,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f603.png",
+	"frame": {"x":384,"y":128,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f604.png",
+	"frame": {"x":0,"y":256,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f605.png",
+	"frame": {"x":128,"y":256,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f606.png",
+	"frame": {"x":256,"y":256,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f609.png",
+	"frame": {"x":384,"y":256,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f618.png",
+	"frame": {"x":0,"y":384,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "1f923.png",
+	"frame": {"x":128,"y":384,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "263a.png",
+	"frame": {"x":256,"y":384,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "2639.png",
+	"frame": {"x":384,"y":384,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "EmojiOne.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:196a26a2e149d875b91ffc8fa3581e76:fc928c7e275404b7e0649307410475cb:424723c3774975ddb2053fd5c4b85f6e$"
+}
+}
+
+</code>
+
+Packages\manifest.json:
+<code>
+{
+  "dependencies": {
+    "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+    "com.unity.collab-proxy": "2.11.2",
+    "com.unity.feature.2d": "2.0.2",
+    "com.unity.ide.rider": "3.0.38",
+    "com.unity.ide.visualstudio": "2.0.26",
+    "com.unity.inputsystem": "1.17.0",
+    "com.unity.multiplayer.center": "1.0.1",
+    "com.unity.render-pipelines.universal": "17.3.0",
+    "com.unity.test-framework": "1.6.0",
+    "com.unity.timeline": "1.8.10",
+    "com.unity.ugui": "2.0.0",
+    "com.unity.visualscripting": "1.9.9",
+    "com.unity.modules.accessibility": "1.0.0",
+    "com.unity.modules.adaptiveperformance": "1.0.0",
+    "com.unity.modules.ai": "1.0.0",
+    "com.unity.modules.androidjni": "1.0.0",
+    "com.unity.modules.animation": "1.0.0",
+    "com.unity.modules.assetbundle": "1.0.0",
+    "com.unity.modules.audio": "1.0.0",
+    "com.unity.modules.cloth": "1.0.0",
+    "com.unity.modules.director": "1.0.0",
+    "com.unity.modules.imageconversion": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.modules.particlesystem": "1.0.0",
+    "com.unity.modules.physics": "1.0.0",
+    "com.unity.modules.physics2d": "1.0.0",
+    "com.unity.modules.screencapture": "1.0.0",
+    "com.unity.modules.terrain": "1.0.0",
+    "com.unity.modules.terrainphysics": "1.0.0",
+    "com.unity.modules.tilemap": "1.0.0",
+    "com.unity.modules.ui": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.modules.umbra": "1.0.0",
+    "com.unity.modules.unityanalytics": "1.0.0",
+    "com.unity.modules.unitywebrequest": "1.0.0",
+    "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+    "com.unity.modules.unitywebrequestaudio": "1.0.0",
+    "com.unity.modules.unitywebrequesttexture": "1.0.0",
+    "com.unity.modules.unitywebrequestwww": "1.0.0",
+    "com.unity.modules.vectorgraphics": "1.0.0",
+    "com.unity.modules.vehicles": "1.0.0",
+    "com.unity.modules.video": "1.0.0",
+    "com.unity.modules.vr": "1.0.0",
+    "com.unity.modules.wind": "1.0.0",
+    "com.unity.modules.xr": "1.0.0"
+  }
+}
+
+</code>
+
+Packages\packages-lock.json:
+<code>
+{
+  "dependencies": {
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "fe31ad0904abee296b5ea72c6073157accba59e8"
+    },
+    "com.unity.2d.animation": {
+      "version": "13.0.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "12.0.1",
+        "com.unity.2d.sprite": "1.0.0",
+        "com.unity.collections": "2.4.3",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.aseprite": {
+      "version": "3.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "12.0.1",
+        "com.unity.2d.sprite": "1.0.0",
+        "com.unity.2d.tilemap": "1.0.0",
+        "com.unity.mathematics": "1.2.6",
+        "com.unity.modules.animation": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.common": {
+      "version": "12.0.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.4",
+        "com.unity.2d.sprite": "1.0.0",
+        "com.unity.collections": "2.4.3",
+        "com.unity.mathematics": "1.1.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.pixel-perfect": {
+      "version": "5.1.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.imgui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.psdimporter": {
+      "version": "12.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "12.0.1",
+        "com.unity.2d.sprite": "1.0.0",
+        "com.unity.2d.tilemap": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.2d.spriteshape": {
+      "version": "13.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "12.0.0",
+        "com.unity.mathematics": "1.1.0",
+        "com.unity.modules.physics2d": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.tilemap": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0"
+      }
+    },
+    "com.unity.2d.tilemap.extras": {
+      "version": "6.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.tilemap": "1.0.0",
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.2d.tooling": {
+      "version": "1.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.2d.common": "12.0.1",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.burst": {
+      "version": "1.8.27",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.collab-proxy": {
+      "version": "2.11.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.collections": {
+      "version": "2.6.2",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.23",
+        "com.unity.mathematics": "1.3.2",
+        "com.unity.test-framework": "1.4.6",
+        "com.unity.nuget.mono-cecil": "1.11.5",
+        "com.unity.test-framework.performance": "3.0.3"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ext.nunit": {
+      "version": "2.0.5",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.feature.2d": {
+      "version": "2.0.2",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.2d.animation": "13.0.2",
+        "com.unity.2d.pixel-perfect": "5.1.1",
+        "com.unity.2d.psdimporter": "12.0.1",
+        "com.unity.2d.sprite": "1.0.0",
+        "com.unity.2d.spriteshape": "13.0.0",
+        "com.unity.2d.tilemap": "1.0.0",
+        "com.unity.2d.tilemap.extras": "6.0.1",
+        "com.unity.2d.aseprite": "3.0.1",
+        "com.unity.2d.tooling": "1.0.1"
+      }
+    },
+    "com.unity.ide.rider": {
+      "version": "3.0.38",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ext.nunit": "1.0.6"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ide.visualstudio": {
+      "version": "2.0.26",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.33"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.17.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.mathematics": {
+      "version": "1.3.3",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.multiplayer.center": {
+      "version": "1.0.1",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      }
+    },
+    "com.unity.nuget.mono-cecil": {
+      "version": "1.11.6",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.render-pipelines.core": {
+      "version": "17.3.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.burst": "1.8.14",
+        "com.unity.mathematics": "1.3.2",
+        "com.unity.ugui": "2.0.0",
+        "com.unity.collections": "2.4.3",
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.terrain": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
+    "com.unity.render-pipelines.universal": {
+      "version": "17.3.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "17.3.0",
+        "com.unity.shadergraph": "17.3.0",
+        "com.unity.render-pipelines.universal-config": "17.0.3"
+      }
+    },
+    "com.unity.render-pipelines.universal-config": {
+      "version": "17.0.3",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "17.0.3"
+      }
+    },
+    "com.unity.searcher": {
+      "version": "4.9.4",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.shadergraph": {
+      "version": "17.3.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "17.3.0",
+        "com.unity.searcher": "4.9.3"
+      }
+    },
+    "com.unity.test-framework": {
+      "version": "1.6.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.ext.nunit": "2.0.3",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
+    "com.unity.test-framework.performance": {
+      "version": "3.2.0",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.33",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.timeline": {
+      "version": "1.8.10",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.director": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ugui": {
+      "version": "2.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "com.unity.visualscripting": {
+      "version": "1.9.9",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.modules.accessibility": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.adaptiveperformance": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.subsystems": "1.0.0"
+      }
+    },
+    "com.unity.modules.ai": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.androidjni": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.animation": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.assetbundle": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.audio": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.cloth": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      }
+    },
+    "com.unity.modules.director": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.animation": "1.0.0"
+      }
+    },
+    "com.unity.modules.hierarchycore": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.imageconversion": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.imgui": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.jsonserialize": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.particlesystem": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.physics": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.physics2d": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.screencapture": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.imageconversion": "1.0.0"
+      }
+    },
+    "com.unity.modules.subsystems": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
+    "com.unity.modules.terrain": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.terrainphysics": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.terrain": "1.0.0"
+      }
+    },
+    "com.unity.modules.tilemap": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.physics2d": "1.0.0"
+      }
+    },
+    "com.unity.modules.ui": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.uielements": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.hierarchycore": "1.0.0",
+        "com.unity.modules.physics": "1.0.0"
+      }
+    },
+    "com.unity.modules.umbra": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.unityanalytics": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
+    "com.unity.modules.unitywebrequest": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.unitywebrequestassetbundle": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      }
+    },
+    "com.unity.modules.unitywebrequestaudio": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.audio": "1.0.0"
+      }
+    },
+    "com.unity.modules.unitywebrequesttexture": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0"
+      }
+    },
+    "com.unity.modules.unitywebrequestwww": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequestaudio": "1.0.0",
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0"
+      }
+    },
+    "com.unity.modules.vectorgraphics": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "com.unity.modules.vehicles": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      }
+    },
+    "com.unity.modules.video": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      }
+    },
+    "com.unity.modules.vr": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.xr": "1.0.0"
+      }
+    },
+    "com.unity.modules.wind": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+    "com.unity.modules.xr": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.subsystems": "1.0.0"
+      }
+    }
+  }
+}
+
+</code>
+
+ProjectSettings\ProjectVersion.txt:
+<code>
+m_EditorVersion: 6000.3.5f1
+m_EditorVersionWithRevision: 6000.3.5f1 (a1ec4b2f2d19)
+
+</code>
+
+ProjectSettings\SceneTemplateSettings.json:
+<code>
+{
+    "templatePinStates": [],
+    "dependencyTypeInfos": [
+        {
+            "userAdded": false,
+            "type": "UnityEngine.AnimationClip",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEditor.Animations.AnimatorController",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.AnimatorOverrideController",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEditor.Audio.AudioMixerController",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.ComputeShader",
+            "defaultInstantiationMode": 1
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Cubemap",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.GameObject",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEditor.LightingDataAsset",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.LightingSettings",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Material",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEditor.MonoScript",
+            "defaultInstantiationMode": 1
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.PhysicsMaterial",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.PhysicsMaterial2D",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Rendering.PostProcessing.PostProcessProfile",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Rendering.PostProcessing.PostProcessResources",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Rendering.VolumeProfile",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEditor.SceneAsset",
+            "defaultInstantiationMode": 1
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Shader",
+            "defaultInstantiationMode": 1
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.ShaderVariantCollection",
+            "defaultInstantiationMode": 1
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Texture",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Texture2D",
+            "defaultInstantiationMode": 0
+        },
+        {
+            "userAdded": false,
+            "type": "UnityEngine.Timeline.TimelineAsset",
+            "defaultInstantiationMode": 0
+        }
+    ],
+    "defaultDependencyTypeInfo": {
+        "userAdded": false,
+        "type": "<default_scene_template_dependencies>",
+        "defaultInstantiationMode": 1
+    },
+    "newSceneOverride": 0
+}
+</code>
+
