@@ -1,0 +1,75 @@
+{
+  "levelId": "LV_TEST",
+  "startNodeId": "node_1",
+  "nodes": [
+    {
+      "nodeId": "node_1",
+      "dialogueLines": [
+        {
+          "characterId": "player",
+          "faceId": "normal",
+          "backgroundId": "bg_school",
+          "text": "Đây là dòng thoại đầu tiên để test logic."
+        },
+        {
+          "characterId": "npc_a",
+          "faceId": "happy",
+          "backgroundId": "bg_school",
+          "text": "Xin chào! Bạn có thấy hệ thống hoạt động không?"
+        }
+      ],
+      "options": [
+        {
+          "text": "Có, chạy tốt!",
+          "nextNodeId": "node_good",
+          "scoreDelta": 10
+        },
+        {
+          "text": "Không, lỗi rồi.",
+          "nextNodeId": "node_bad",
+          "scoreDelta": -10
+        }
+      ],
+      "nextNodeId": "" 
+    },
+    {
+      "nodeId": "node_good",
+      "dialogueLines": [
+        {
+          "characterId": "npc_a",
+          "faceId": "happy",
+          "backgroundId": "bg_school",
+          "text": "Tuyệt vời! Cộng 10 điểm cho Gryffindor!"
+        }
+      ],
+      "options": [],
+      "nextNodeId": "node_end"
+    },
+    {
+      "nodeId": "node_bad",
+      "dialogueLines": [
+        {
+          "characterId": "npc_a",
+          "faceId": "angry",
+          "backgroundId": "bg_dark",
+          "text": "Buồn quá... Hãy kiểm tra lại Console xem lỗi gì nhé."
+        }
+      ],
+      "options": [],
+      "nextNodeId": "node_end"
+    },
+    {
+      "nodeId": "node_end",
+      "dialogueLines": [
+        {
+          "characterId": "",
+          "faceId": "",
+          "backgroundId": "",
+          "text": "Kết thúc đoạn test."
+        }
+      ],
+      "options": [],
+      "nextNodeId": ""
+    }
+  ]
+}

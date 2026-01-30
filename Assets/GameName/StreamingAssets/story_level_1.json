@@ -1,0 +1,75 @@
+{
+  "levelId": "LV01",
+  "startNodeId": "node_start",
+  "nodes": [
+    {
+      "nodeId": "node_start",
+      "dialogueLines": [
+        {
+          "characterId": "player",
+          "faceId": "normal",
+          "backgroundId": "bg_city",
+          "text": "Hôm nay trời đẹp quá nhỉ?"
+        },
+        {
+          "characterId": "girl",
+          "faceId": "happy",
+          "backgroundId": "bg_city",
+          "text": "Chào đằng ấy! Cậu đang đi đâu thế?"
+        }
+      ],
+      "options": [
+        {
+          "text": "Chào lại một cách thân thiện",
+          "nextNodeId": "node_friendly",
+          "scoreDelta": 10
+        },
+        {
+          "text": "Lờ đi",
+          "nextNodeId": "node_ignore",
+          "scoreDelta": -5
+        }
+      ],
+      "nextNodeId": "" 
+    },
+    {
+      "nodeId": "node_friendly",
+      "dialogueLines": [
+        {
+          "characterId": "girl",
+          "faceId": "blush",
+          "backgroundId": "bg_city",
+          "text": "Cậu thật tốt bụng!"
+        }
+      ],
+      "options": [],
+      "nextNodeId": "node_end"
+    },
+    {
+      "nodeId": "node_ignore",
+      "dialogueLines": [
+        {
+          "characterId": "girl",
+          "faceId": "sad",
+          "backgroundId": "bg_city",
+          "text": "Ơ... kì cục vậy..."
+        }
+      ],
+      "options": [],
+      "nextNodeId": "node_end"
+    },
+    {
+      "nodeId": "node_end",
+      "dialogueLines": [
+        {
+          "characterId": "",
+          "faceId": "",
+          "backgroundId": "",
+          "text": "Hết đoạn hội thoại demo."
+        }
+      ],
+      "options": [],
+      "nextNodeId": ""
+    }
+  ]
+}
