@@ -12,5 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2148fd2f2bf8404dbed25401c5762dc, type: 3}
   m_Name: TestResources
   m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.VisualNovelResourcesSO
-  _characterSprites: []
-  _backgrounds: []
+  _characterSprites:
+  - characterId: player
+    faceId: normal
+    sprite: {fileID: 0}
+  - characterId: npc_a
+    faceId: happy
+    sprite: {fileID: 0}
+  - characterId: npc_a
+    faceId: happy
+    sprite: {fileID: 0}
+  _backgrounds:
+  - backgroundId: bg_school
+    sprite: {fileID: 0}
+  _specialItems:
+  - itemId: key_card
+    sprite: {fileID: -631652450660177776, guid: 2e05d7fdc69f3ce48a1762efe6dcf459, type: 3}

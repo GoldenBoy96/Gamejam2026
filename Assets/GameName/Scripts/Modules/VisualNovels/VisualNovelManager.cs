@@ -16,6 +16,27 @@ namespace Gamejam2026
         private StoryNode _currentNode;
         private int _currentScore = 0;
         private string _currentLevelId;
+        public Sprite GetSpecialItem(string id)
+        {
+            if (_resources == null)
+            {
+                Debug.LogError("LỖI CỰC LỚN: Bạn chưa gán file 'Test Resources' vào VisualNovelManager!");
+                return null;
+            }
+
+            Sprite s = _resources.GetSpecialItem(id);
+
+            if (s == null)
+            {
+                Debug.LogError($"Tìm thấy file Resources, nhưng không tìm thấy item có tên: '{id}'. Hãy kiểm tra lại chính tả ID.");
+            }
+            else
+            {
+                Debug.Log($"Đã tìm thấy Item '{id}' thành công! Nếu không hiện thì do lỗi UI.");
+            }
+
+            return s;
+        }
 
         // Load from JSON
         public void LoadStory(string jsonFileName)
