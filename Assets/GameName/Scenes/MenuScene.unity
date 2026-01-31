@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "C\xE0i \u0110\u1EB7t\n"
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
   m_sharedMaterial: {fileID: -678912925183390448, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tho\xE1t"
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
   m_sharedMaterial: {fileID: -678912925183390448, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "B\u1EAFt \u0110\u1EA7u"
+  m_text: Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
   m_sharedMaterial: {fileID: -678912925183390448, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ph\xF2ng kh\xE1m G\xE2u \u0110\u1EA7n"
+  m_text: Gau Dan Clinic
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
   m_sharedMaterial: {fileID: -678912925183390448, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
