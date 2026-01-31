@@ -8,22 +8,37 @@ namespace Gamejam2026
     {
         public PlayerInventory PlayerInventoryData { get; private set; }
         public PlayerProgression PlayerProgressionData { get; private set; }
+        public VNSaveData VNSaveData { get; private set; }
+
         public void LoadPlayerData()
         {
             PlayerInventoryData = JsonHelper.ReadData<PlayerInventory>(Application.persistentDataPath + "/PlayerInventory");
             PlayerProgressionData = JsonHelper.ReadData<PlayerProgression>(Application.persistentDataPath + "/PlayerProgression");
+            VNSaveData = JsonHelper.ReadData<VNSaveData>(Application.persistentDataPath + "/VNSaveData");
+            if (VNSaveData == null) VNSaveData = new VNSaveData();
         }
 
         public void SavePlayerData()
         {
             JsonHelper.SaveData(PlayerInventoryData, Application.persistentDataPath + "/PlayerInventory");
             JsonHelper.SaveData(PlayerProgressionData, Application.persistentDataPath + "/PlayerProgression");
+            JsonHelper.SaveData(VNSaveData, Application.persistentDataPath + "/VNSaveData");
+            JsonHelper.SaveData(VNSaveData, Application.persistentDataPath + "/VNSaveData");
         }
 
         public void ResetPlayerData()
         {
             PlayerInventoryData = new PlayerInventory();
             PlayerProgressionData = new PlayerProgression();
+        }
+        public void SaveVNProgress(string levelId, string nodeId, int score)
+        {
+            if (VNSaveData == null) VNSaveData = new VNSaveData();
+            VNSaveData.levelId = levelId;
+            VNSaveData.currentNodeId = nodeId;
+            VNSaveData.currentScore = score;
+
+            JsonHelper.SaveData(VNSaveData, Application.persistentDataPath + "/VNSaveData");
         }
     }
 

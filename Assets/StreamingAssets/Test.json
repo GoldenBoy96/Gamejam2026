@@ -1,0 +1,118 @@
+{
+  "levelId": "test_level_01",
+  "startNodeId": "node_intro",
+  "nodes": [
+    {
+      "nodeId": "node_intro",
+      "dialogueLines": [
+        {
+          "characterId": "narrator",
+          "faceId": "",
+          "backgroundId": "bg_school_gate",
+          "text": "Chào mừng bạn đến với bản demo tính năng."
+        },
+        {
+          "characterId": "narrator",
+          "faceId": "",
+          "backgroundId": "bg_school_gate",
+          "text": "Đầu tiên, chúng ta sẽ kiểm tra tính năng hiển thị vật phẩm đặc biệt."
+        }
+      ],
+      "options": [],
+      "nextNodeId": "node_show_item"
+    },
+    {
+      "nodeId": "node_show_item",
+      "dialogueLines": [
+        {
+          "characterId": "girl",
+          "faceId": "happy",
+          "backgroundId": "bg_classroom",
+          "text": "Này, cậu có làm rơi cái này không?"
+        },
+        {
+          "characterId": "",
+          "faceId": "",
+          "backgroundId": "bg_classroom",
+          "text": "!!key_card"
+        },
+        {
+          "characterId": "girl",
+          "faceId": "happy",
+          "backgroundId": "bg_classroom",
+          "text": "Trông nó giống một chiếc thẻ từ quan trọng."
+        }
+      ],
+      "options": [],
+      "nextNodeId": "node_hide_item_check"
+    },
+    {
+      "nodeId": "node_hide_item_check",
+      "dialogueLines": [
+        {
+          "characterId": "player",
+          "faceId": "",
+          "backgroundId": "bg_classroom",
+          "text": "(Cô ấy đã cất cái thẻ đi. Ảnh vật phẩm trên màn hình cũng phải biến mất rồi.)"
+        },
+        {
+          "characterId": "player",
+          "faceId": "",
+          "backgroundId": "bg_classroom",
+          "text": "(Đây là dòng suy nghĩ của Player, chữ phải nghiêng và có màu khác.)"
+        }
+      ],
+      "options": [
+        {
+          "text": "Nhận lại thẻ (+10 điểm)",
+          "nextNodeId": "node_good_choice",
+          "scoreDelta": 10
+        },
+        {
+          "text": "Từ chối và bỏ đi (-5 điểm)",
+          "nextNodeId": "node_bad_choice",
+          "scoreDelta": -5
+        }
+      ],
+      "nextNodeId": ""
+    },
+    {
+      "nodeId": "node_good_choice",
+      "dialogueLines": [
+        {
+          "characterId": "girl",
+          "faceId": "blush",
+          "backgroundId": "bg_classroom",
+          "text": "May quá, tớ cứ sợ cậu làm mất nó."
+        },
+        {
+          "characterId": "narrator",
+          "faceId": "",
+          "backgroundId": "bg_classroom",
+          "text": "Test hoàn tất: Bạn đã chọn nhánh tốt."
+        }
+      ],
+      "options": [],
+      "nextNodeId": ""
+    },
+    {
+      "nodeId": "node_bad_choice",
+      "dialogueLines": [
+        {
+          "characterId": "girl",
+          "faceId": "angry",
+          "backgroundId": "bg_dark",
+          "text": "Cậu thật thô lỗ!"
+        },
+        {
+          "characterId": "narrator",
+          "faceId": "",
+          "backgroundId": "bg_dark",
+          "text": "Test hoàn tất: Bạn đã chọn nhánh xấu (Bad End)."
+        }
+      ],
+      "options": [],
+      "nextNodeId": ""
+    }
+  ]
+}
