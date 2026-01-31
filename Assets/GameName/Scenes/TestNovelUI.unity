@@ -685,8 +685,8 @@ MonoBehaviour:
   _optionButtonPrefab: {fileID: 2665045773649639332, guid: 55fedc266a41bfb429596bf3f3f8eed5, type: 3}
   _normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   _thoughtTextColor: {r: 0.8, g: 0.8, b: 1, a: 1}
-  _normalFont: {fileID: 0}
-  _thoughtFont: {fileID: 0}
+  _normalFont: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  _thoughtFont: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
 --- !u!1 &1113089361
 GameObject:
   m_ObjectHideFlags: 0

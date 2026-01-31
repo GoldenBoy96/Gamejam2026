@@ -23,7 +23,7 @@ namespace Gamejam2026
         [SerializeField] private Button _optionButtonPrefab;
 
         [Header("Text Styles")]
-        [SerializeField] private Color _normalTextColor = Color.white;
+        [SerializeField] private Color _normalTextColor = Color.black;
         [SerializeField] private Color _thoughtTextColor = new Color(0.8f, 0.8f, 1f, 1f);
         [SerializeField] private TMP_FontAsset _normalFont;
         [SerializeField] private TMP_FontAsset _thoughtFont;
