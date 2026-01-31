@@ -39,7 +39,8 @@ public class IntroSlideshow : MonoBehaviour
 
         // Sau khi chạy hết các slide, chuyển sang Scene tiếp theo
         // SceneManager.LoadScene(nextSceneName);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("NovelUIOK");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+
     }
 
     IEnumerator Fade(float startAlpha, float endAlpha)

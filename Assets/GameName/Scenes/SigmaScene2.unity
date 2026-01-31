@@ -272,7 +272,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 435}
-  m_SizeDelta: {x: 1000, y: 50}
+  m_SizeDelta: {x: 1400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134023001
 MonoBehaviour:
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "G\xE0 qu\xE1 hay sao m\xE0 ch\u1ECDn ch\u1EBF \u0111\u1ED9 d\u1EC5 v\u1EADy"
+  m_text: Are you sure you can handle Nightmare mode?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
   m_sharedMaterial: {fileID: -678912925183390448, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}

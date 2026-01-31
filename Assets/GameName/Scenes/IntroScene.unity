@@ -368,10 +368,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2009173013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1280, y: 0}
-  m_SizeDelta: {x: 2560, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!225 &717327573
 CanvasGroup:
@@ -405,9 +405,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7551176101055524867, guid: 64715201d4ee12c44b9a0482ad2b76a4, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -541,8 +541,8 @@ MonoBehaviour:
   displayImage: {fileID: 717327574}
   canvasGroup: {fileID: 717327573}
   slides:
-  - {fileID: -8483731395159641348, guid: 93b748077cffba849b58784ace207bcd, type: 3}
-  - {fileID: -4364034832326165938, guid: a601c73c010eaf14ca3f971f5f4e6bb3, type: 3}
+  - {fileID: -7551176101055524867, guid: 64715201d4ee12c44b9a0482ad2b76a4, type: 3}
+  - {fileID: 5796508233773323742, guid: d42cd4abfcdeed149a1e9c909176a14f, type: 3}
   fadeDuration: 1
   displayTime: 2
 --- !u!1660057539 &9223372036854775807

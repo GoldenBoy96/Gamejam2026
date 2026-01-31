@@ -62,6 +62,7 @@ namespace Gamejam2026
         public void PlaySound(string audioName)
         {
             AudioSource audioSource = null;
+            Debug.Log("Play sound: " + audioName);
             if (_availableSoundSource.Count == 0)
             {
                 audioSource = gameObject.AddComponent<AudioSource>();
