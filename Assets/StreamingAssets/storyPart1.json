@@ -1,0 +1,46 @@
+{
+  "levelId": "VN1",
+  "startNodeId": "start",
+  "nodes": [
+    {
+      "nodeId": "start",
+      "dialogueLines": [
+        { "characterId": "doctor", "faceId": "default", "backgroundId": "table", "text": "Hello. Please take a seat. I'm here to listen." },
+        { "characterId": "patient", "faceId": "fake_smile", "backgroundId": "table", "text": "Hi doctor. I... I don't know where to start." }
+      ],
+      "nextNodeId": "happy_past"
+    },
+    {
+      "nodeId": "happy_past",
+      "dialogueLines": [
+        { "characterId": "player", "faceId": "default", "backgroundId": "bed", "text": "(She begins to tell her story...)" },
+        { "characterId": "narrator", "faceId": "default", "backgroundId": "bed", "text": "Life used to be colorful. Mom and Dad were always laughing." }
+      ],
+      "nextNodeId": "divorce"
+    },
+    {
+      "nodeId": "divorce",
+      "dialogueLines": [
+        { "characterId": "patient", "faceId": "sit_hand_on_knee", "backgroundId": "bed", "text": "Then the arguments started. Then the silence. Then... the divorce." },
+        { "characterId": "patient", "faceId": "sad", "backgroundId": "bed", "text": "We moved. Mom stopped looking at me. She was always busy, or just... empty." }
+      ],
+      "nextNodeId": "meet_cat"
+    },
+    {
+      "nodeId": "meet_cat",
+      "dialogueLines": [
+        { "characterId": "patient", "faceId": "sit_hand_hold_high", "backgroundId": "bed", "text": "That's when I found Miu. A small, abandoned kitten." },
+        { "characterId": "patient", "faceId": "sit_hand_hold_high", "backgroundId": "bed", "text": "Miu was my only friend. My only family, really." }
+      ],
+      "nextNodeId": "cat_lost"
+    },
+    {
+      "nodeId": "cat_lost",
+      "dialogueLines": [
+        { "characterId": "patient", "faceId": "fear", "backgroundId": "bed", "text": "But last week... Miu didn't come home." },
+        { "characterId": "patient", "faceId": "lie_hand_hold_on_chest", "backgroundId": "bed", "text": "I waited. And waited. The silence is back, doctor. And it's louder than ever." }
+      ],
+      "nextNodeId": "SCENE:VisualNovelScene2"
+    }
+  ]
+}

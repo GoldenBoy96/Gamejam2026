@@ -339,7 +339,9 @@ MonoBehaviour:
   _maxHealth: 3
   _objectToShake: {fileID: 1827419779}
   _shakeDuration: 0.3
-  _shakeMagnitude: 50
+  _shakeMagnitude: 10
+  _victorySceneName: EndingScene_Good
+  _defeatSceneName: EndingScene_Bad
 --- !u!4 &283847070
 Transform:
   m_ObjectHideFlags: 0

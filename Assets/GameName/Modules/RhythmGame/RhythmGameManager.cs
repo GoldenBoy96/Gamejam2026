@@ -33,11 +33,15 @@ namespace Gamejam2026
 
         [Header("Shake FX")]
         [SerializeField] private Transform _objectToShake;
-        [SerializeField] private float _shakeDuration = 0.2f; 
-        [SerializeField] private float _shakeMagnitude = 0.5f; 
+        [SerializeField] private float _shakeDuration = 0.2f;
+        [SerializeField] private float _shakeMagnitude = 0.5f;
+
+        [Header("Scene Navigation")]
+        [SerializeField] private string _victorySceneName = "EndingScene_Good";
+        [SerializeField] private string _defeatSceneName = "EndingScene_Bad";
 
         private int _currentHealth;
-        private int _currentScore = 0; 
+        private int _currentScore = 0;
         private float _secPerBeat;
         private float _dspSongTime;
         private float _beatsPrespawn;
@@ -155,7 +159,7 @@ namespace Gamejam2026
             }
             else
             {
-                _beatsPrespawn = 4f; 
+                _beatsPrespawn = 4f;
             }
 
             foreach (Transform child in _noteHolder) Destroy(child.gameObject);
@@ -342,30 +346,37 @@ namespace Gamejam2026
             _isPlaying = false;
             _audioSource.Stop();
             ShowFeedback("GAME OVER", Color.red);
-            // Xử lý Bad End
+
+            Debug.Log("Game Over! Loading Bad Ending...");
+            Invoke(nameof(LoadDefeatScene), 2.0f); // Delay 2s to show feedback
         }
 
         private void Victory()
         {
-            // 1. Dừng mọi hoạt động game
             _isGameFinished = true;
             _isPlaying = false;
-
-            // 2. Tắt nhạc ngay lập tức
             _audioSource.Stop();
 
-            // 3. (Tùy chọn) Xóa sạch các nốt còn lại trên màn hình cho đẹp
             foreach (var note in _activeNotes)
             {
                 if (note != null) Destroy(note.gameObject);
             }
             _activeNotes.Clear();
 
-            // 4. Thông báo
-            Debug.Log("GOOD END: Đủ điểm! Chiến thắng!");
+            Debug.Log("GOOD END: Loading Good Ending...");
             ShowFeedback("VICTORY!!", Color.yellow);
 
-            // TODO: Gọi lệnh chuyển Level hoặc hiện bảng Win tại đây
+            Invoke(nameof(LoadVictoryScene), 2.0f); // Delay 2s
+        }
+        private void LoadVictoryScene()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(_victorySceneName);
+        }
+
+        private void LoadDefeatScene()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(_defeatSceneName);
         }
     }
 }
+
