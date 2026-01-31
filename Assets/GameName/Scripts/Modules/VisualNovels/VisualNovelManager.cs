@@ -75,6 +75,11 @@ namespace Gamejam2026
 
         private void PlayNode(string nodeId)
         {
+            if (nodeId.StartsWith("SCENE:"))
+            {
+                CheckSceneTransition(nodeId);
+                return;
+            }
             if (string.IsNullOrEmpty(nodeId) || !_nodeMap.ContainsKey(nodeId))
             {
                 Debug.Log("End of story or Invalid Node: " + nodeId);
@@ -114,6 +119,23 @@ namespace Gamejam2026
 
             // Chuyển node
             PlayNode(option.nextNodeId);
+        }
+        private void CheckSceneTransition(string nodeId)
+        {
+            if (nodeId.StartsWith("SCENE:"))
+            {
+                string sceneName = nodeId.Substring(6).Trim(); // Remove "SCENE:" prefix
+                Debug.Log($"[VN Manager] Transitioning to scene: {sceneName}");
+
+                // Save progress before leaving
+                if (_currentNode != null)
+                {
+                    DataManager dataManager = new DataManager(); // Or access via Singleton if available
+                    dataManager.SaveVNProgress(_currentLevelId, "END", _currentScore);
+                }
+
+                UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            }
         }
 
         public Sprite GetBackground(string id) => _resources.GetBackground(id);

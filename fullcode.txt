@@ -5,24 +5,32 @@
   "WorkspaceRootPath": "D:\\Code\\Game_project\\Gamejam2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\models\\visualnovelresourcesso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\models\\visualnovelresourcesso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\dirtyplace\\testloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\dirtyplace\\testloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\models\\visualnovelmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\models\\visualnovelmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\ourutils\\json\\jsonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\ourutils\\json\\jsonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,7 +40,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
@@ -42,7 +50,7 @@
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Models\\VisualNovelModels.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Models\\VisualNovelModels.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Models\\VisualNovelModels.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAowCAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAwwBEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-30T17:40:02.666Z",
               "IsPinned": true
@@ -57,50 +65,74 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "JsonHelper.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "RelativeToolTip": "Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAcwDYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T19:55:37.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestLoader.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "RelativeToolTip": "Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T19:20:13.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "VisualNovelUI.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAIwGoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAiwEMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T18:27:22.685Z"
+              "WhenOpened": "2026-01-30T18:27:22.685Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "VisualNovelManager.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAewFoAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T18:25:14.472Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-30T18:25:14.472Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "DataManager.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAcwCcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAuwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-30T17:58:41.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "VisualNovelResourcesSO.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-30T17:57:17.441Z"
             }
@@ -119,31 +151,47 @@
   "WorkspaceRootPath": "D:\\Code\\Game_project\\Gamejam2026\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\modules\\rhythmgame\\rhythmgamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\modules\\rhythmgame\\rhythmgamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\scripts\\controllers\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\controllers\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\modules\\rhythmgame\\rhythmlevelso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\modules\\rhythmgame\\rhythmlevelso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\modules\\rhythmgame\\rhythmnote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\modules\\rhythmgame\\rhythmnote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\visualnovels\\visualnovelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\models\\visualnovelresourcesso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\models\\visualnovelresourcesso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\dirtyplace\\testloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\dirtyplace\\testloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\dirtyplace\\testloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\models\\visualnovelmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\models\\visualnovelmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|d:\\code\\game_project\\gamejam2026\\assets\\gamename\\scripts\\ourutils\\json\\jsonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\modules\\datamanagers\\datamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|D:\\Code\\Game_project\\Gamejam2026\\assets\\gamename\\scripts\\ourutils\\json\\jsonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D43A410-6035-0340-1259-0F4541AD6FBC}|Assembly-CSharp.csproj|solutionrelative:assets\\gamename\\scripts\\ourutils\\json\\jsonhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -154,11 +202,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "VisualNovelModels.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Models\\VisualNovelModels.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Models\\VisualNovelModels.cs",
@@ -167,33 +215,58 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAwwBEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-30T17:40:02.666Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameController.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Controllers\\GameController.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Controllers\\GameController.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Controllers\\GameController.cs",
+              "RelativeToolTip": "Assets\\GameName\\Scripts\\Controllers\\GameController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-31T11:46:08.119Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "JsonHelper.cs",
-              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
-              "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
-              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
-              "RelativeToolTip": "Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAcwDYAAAAwAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "RhythmGameManager.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Modules\\RhythmGame\\RhythmGameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\Modules\\RhythmGame\\RhythmGameManager.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Modules\\RhythmGame\\RhythmGameManager.cs",
+              "RelativeToolTip": "Assets\\GameName\\Modules\\RhythmGame\\RhythmGameManager.cs",
+              "ViewState": "AgIAAPUAAAAAAAAAAAAswBwBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T19:55:37.497Z",
+              "WhenOpened": "2026-01-31T05:32:10.588Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TestLoader.cs",
-              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\DirtyPlace\\TestLoader.cs",
-              "RelativeDocumentMoniker": "Assets\\GameName\\DirtyPlace\\TestLoader.cs",
-              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\DirtyPlace\\TestLoader.cs",
-              "RelativeToolTip": "Assets\\GameName\\DirtyPlace\\TestLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Title": "RhythmNote.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Modules\\RhythmGame\\RhythmNote.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\Modules\\RhythmGame\\RhythmNote.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Modules\\RhythmGame\\RhythmNote.cs",
+              "RelativeToolTip": "Assets\\GameName\\Modules\\RhythmGame\\RhythmNote.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAYwDAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T19:20:13.311Z",
+              "WhenOpened": "2026-01-31T05:31:39.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RhythmLevelSO.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Modules\\RhythmGame\\RhythmLevelSO.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\Modules\\RhythmGame\\RhythmLevelSO.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Modules\\RhythmGame\\RhythmLevelSO.cs",
+              "RelativeToolTip": "Assets\\GameName\\Modules\\RhythmGame\\RhythmLevelSO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-31T05:30:59.606Z",
               "EditorCaption": ""
             },
             {
@@ -206,33 +279,56 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
+              "Title": "JsonHelper.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "RelativeToolTip": "Assets\\GameName\\Scripts\\OurUtils\\Json\\JsonHelper.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAcwDYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T19:55:37.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TestLoader.cs",
+              "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "RelativeToolTip": "Assets\\GameName\\DirtyPlace\\TestLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T19:20:13.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "VisualNovelUI.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelUI.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAMwFgAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAiwEMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-30T18:27:22.685Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "VisualNovelManager.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Modules\\VisualNovels\\VisualNovelManager.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAhwB0AAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T18:25:14.472Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-30T18:25:14.472Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "DataManager.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
@@ -240,21 +336,19 @@
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Modules\\DataManagers\\DataManager.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAuwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T17:58:41.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-30T17:58:41.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "VisualNovelResourcesSO.cs",
               "DocumentMoniker": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
               "RelativeDocumentMoniker": "Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
               "ToolTip": "D:\\Code\\Game_project\\Gamejam2026\\Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
               "RelativeToolTip": "Assets\\GameName\\Scripts\\Models\\VisualNovelResourcesSO.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAwDUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-30T17:57:17.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-30T17:57:17.441Z"
             }
           ]
         }
@@ -264,11 +358,223 @@
 }
 </code>
 
+Assets\GameName\DirtyPlace\DifficultController.cs:
+<code>
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Gamejam2026
+{
+    public class DifficultController : MonoBehaviour
+    {
+        public Button difficult1Button;
+        public Button difficult2Button;
+        public Button backButton;
+
+        public void StartGameWithDifficult1()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SigmaScene");
+            Debug.Log("Bắt đầu trò chơi!");
+        }
+
+        public void StartGameWithDifficult2()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SigmaScene");
+            Debug.Log("Bắt đầu trò chơi!");
+        }
+
+        public void Back()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+            Debug.Log("Thoát trò chơi!");
+        }
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            difficult1Button.onClick.AddListener(StartGameWithDifficult1);
+            difficult2Button.onClick.AddListener(StartGameWithDifficult2);
+            backButton.onClick.AddListener(Back);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+    }
+}
+
+</code>
+
+Assets\GameName\DirtyPlace\IntroSlideshow.cs:
+<code>
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+public class IntroSlideshow : MonoBehaviour
+{
+    public Image displayImage; // Kéo IntroImage vào đây
+    public CanvasGroup canvasGroup; // Kéo Canvas Group của IntroImage vào đây
+    public List<Sprite> slides; // Danh sách các ảnh intro
+    public float fadeDuration = 1.0f; // Thời gian mờ dần
+    public float displayTime = 2.0f; // Thời gian ảnh đứng yên
+    // public string nextSceneName; // Tên Scene tiếp theo (Menu chính)
+
+    void Start()
+    {
+        // Bắt đầu bằng việc ẩn ảnh đi (Alpha = 0)
+        canvasGroup.alpha = 0;
+        StartCoroutine(PlaySlideshow());
+    }
+
+    IEnumerator PlaySlideshow()
+    {
+        foreach (Sprite slide in slides)
+        {
+            // 1. Đổi ảnh mới
+            displayImage.sprite = slide;
+
+            // 2. Fade In (Mờ dần vào)
+            yield return StartCoroutine(Fade(0, 1));
+
+            // 3. Chờ một khoảng thời gian
+            yield return new WaitForSeconds(displayTime);
+
+            // 4. Fade Out (Mờ dần ra)
+            yield return StartCoroutine(Fade(1, 0));
+        }
+        yield return new WaitForSeconds(0.5f);
+
+        // Sau khi chạy hết các slide, chuyển sang Scene tiếp theo
+        // SceneManager.LoadScene(nextSceneName);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("NovelUIOK");
+    }
+
+    IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = endAlpha;
+    }
+}
+</code>
+
+Assets\GameName\DirtyPlace\MenuController.cs:
+<code>
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Gamejam2026
+{
+    public class MenuController : MonoBehaviour
+    {
+        public Button startButton;
+        public Button settingsButton;
+        public Button exitButton;
+
+        public void StartGame()
+        {
+            // Logic để bắt đầu trò chơi
+            // go to the Difficulty Selection Scene or the main game scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene("DifficultScene");
+            Debug.Log("Bắt đầu trò chơi!");
+        }
+
+        public void OpenSettings()
+        {
+            // Logic để mở menu cài đặt
+            Debug.Log("Mở cài đặt!");
+        }
+
+        public void ExitGame()
+        {
+            // Logic để thoát trò chơi
+            Debug.Log("Thoát trò chơi!");
+            Application.Quit();
+        }
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            startButton.onClick.AddListener(StartGame);
+            settingsButton.onClick.AddListener(OpenSettings);
+            exitButton.onClick.AddListener(ExitGame);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+    }
+}
+</code>
+
 Assets\GameName\DirtyPlace\README.txt:
 <code>
 Do whatever you want in this place even though how dirty they are!
 Ensure to add this dir to gitignore before using.
 Ensure to isolate anything inside this from the rest of the project.
+</code>
+
+Assets\GameName\DirtyPlace\SigmaController.cs:
+<code>
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class SigmaController : MonoBehaviour
+{
+    public Image tayImage;
+
+    void Start()
+    {
+        StartCoroutine(PlaySequence());
+    }
+
+    IEnumerator PlaySequence()
+    {
+        yield return StartCoroutine(MoveImage(new Vector2(-17, -319), 1.0f));
+        yield return StartCoroutine(MoveImage(new Vector2(-17, -319), 1.0f));
+
+        yield return StartCoroutine(MoveImage(new Vector2(-198, -272), 1.4f));
+
+        yield return StartCoroutine(MoveImage(new Vector2(-82, -411), 2.4f));
+        yield return new WaitForSeconds(1.0f);
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("VisualNovelScene");
+
+        Debug.Log("Đã di chuyển xong tất cả các bước!");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("IntroScene");
+
+    }
+
+    IEnumerator MoveImage(Vector2 targetPosition, float duration)
+    {
+        // Lấy RectTransform của Image
+        RectTransform rectTransform = tayImage.rectTransform;
+        Vector2 startPosition = rectTransform.anchoredPosition;
+        float timeElapsed = 0;
+
+        while (timeElapsed < duration)
+        {
+            // Tính toán vị trí mới dựa trên tỉ lệ thời gian đã trôi qua
+            rectTransform.anchoredPosition = Vector2.Lerp(startPosition, targetPosition, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null; // Đợi khung hình tiếp theo
+        }
+
+        // Đảm bảo ảnh đến đúng vị trí cuối cùng
+        rectTransform.anchoredPosition = targetPosition;
+    }
+}
 </code>
 
 Assets\GameName\DirtyPlace\TestLoader.cs:
@@ -720,6 +1026,460 @@ namespace Gamejam2026
 
 </code>
 
+Assets\GameName\Modules\RhythmGame\RhythmGameManager.cs:
+<code>
+﻿using OurUtils;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+namespace Gamejam2026
+{
+    public class RhythmGameManager : SingletonMono<RhythmGameManager>
+    {
+        [Header("Components")]
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private Transform _noteHolder;
+        [SerializeField] private RhythmNote _notePrefab;
+
+        // --- SỬA ĐỔI 1: Thay vì 1 điểm, ta dùng 1 List điểm ---
+        [SerializeField] private List<RectTransform> _spawnPoints;
+
+        [SerializeField] private RectTransform _targetPoint;
+        [SerializeField] private TextMeshProUGUI _feedbackText;
+        [SerializeField] private TextMeshProUGUI _healthText;
+        [SerializeField] private TextMeshProUGUI _scoreText;
+
+        [Header("Settings")]
+        [SerializeField] private RhythmLevelSO _currentLevel;
+        [SerializeField] private float _hitWindow = 0.15f;
+
+        // --- SỬA ĐỔI 2: Mục tiêu chiến thắng ---
+        [SerializeField] private int _targetScoreToWin = 12;
+
+        [Header("Game State")]
+        [SerializeField] private int _maxHealth = 3;
+
+
+        [Header("Shake FX")]
+        [SerializeField] private Transform _objectToShake;
+        [SerializeField] private float _shakeDuration = 0.2f; 
+        [SerializeField] private float _shakeMagnitude = 0.5f; 
+
+        private int _currentHealth;
+        private int _currentScore = 0; 
+        private float _secPerBeat;
+        private float _dspSongTime;
+        private float _beatsPrespawn;
+        private bool _isPlaying = false;
+        private bool _isGameFinished = false;
+
+        private Vector3 _originalPos;
+        private Coroutine _shakeCoroutine;
+
+        private int _nextIndexToSpawn = 0;
+        private List<RhythmNote> _activeNotes = new List<RhythmNote>();
+
+        private Coroutine _pulseCoroutine;
+
+        private void TriggerShake()
+        {
+            if (_shakeCoroutine == null)
+            {
+                _originalPos = _objectToShake.localPosition;
+            }
+            else
+            {
+                StopCoroutine(_shakeCoroutine);
+            }
+
+            _shakeCoroutine = StartCoroutine(ShakeCoroutine());
+        }
+
+        private System.Collections.IEnumerator ShakeCoroutine()
+        {
+            float elapsed = 0.0f;
+
+            while (elapsed < _shakeDuration)
+            {
+                // Tạo độ lệch ngẫu nhiên
+                float x = Random.Range(-1f, 1f) * _shakeMagnitude;
+                float y = Random.Range(-1f, 1f) * _shakeMagnitude;
+
+                _objectToShake.localPosition = _originalPos + new Vector3(x, y, 0);
+
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            // Trả về vị trí cũ
+            _objectToShake.localPosition = _originalPos;
+            _shakeCoroutine = null;
+        }
+
+        private void TriggerHeartbeat()
+        {
+            // Nếu đang có hiệu ứng đập dở thì dừng lại để đập cái mới (giúp spam nút không bị lỗi)
+            if (_pulseCoroutine != null) StopCoroutine(_pulseCoroutine);
+
+            _pulseCoroutine = StartCoroutine(PulseCoroutine());
+        }
+        private System.Collections.IEnumerator PulseCoroutine()
+        {
+            float duration = 0.1f; // Thời gian phóng to (nhanh)
+            float elapsedTime = 0f;
+            Vector3 originalScale = Vector3.one; // Size gốc (1,1,1)
+            Vector3 targetScale = Vector3.one * 1.3f; // Phóng to lên 1.3 lần
+
+            // Giai đoạn 1: Phóng to
+            while (elapsedTime < duration)
+            {
+                _targetPoint.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            _targetPoint.localScale = targetScale;
+
+            // Giai đoạn 2: Thu nhỏ về lại
+            elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                _targetPoint.localScale = Vector3.Lerp(targetScale, originalScale, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            _targetPoint.localScale = originalScale;
+        }
+
+        private void Start()
+        {
+            // Tự động chạy nếu có sẵn Level trong Inspector
+            if (_currentLevel != null)
+            {
+                StartGame(_currentLevel);
+            }
+            else
+            {
+                Debug.LogWarning("Chưa gán LevelSO vào Manager nên game không tự chạy!");
+            }
+        }
+
+        public void StartGame(RhythmLevelSO level)
+        {
+            _currentLevel = level;
+            _secPerBeat = 60f / level.bpm;
+            _currentHealth = _maxHealth;
+            _currentScore = 0;
+            _nextIndexToSpawn = 0;
+            _isGameFinished = false;
+            _activeNotes.Clear();
+            UpdateUI();
+
+            if (_spawnPoints.Count > 0)
+            {
+                float distance = Vector2.Distance(_spawnPoints[0].anchoredPosition, _targetPoint.anchoredPosition);
+                float speed = level.noteSpeed > 0 ? level.noteSpeed : 500f;
+                float timeOnScreen = distance / speed;
+                _beatsPrespawn = timeOnScreen / _secPerBeat;
+            }
+            else
+            {
+                _beatsPrespawn = 4f; 
+            }
+
+            foreach (Transform child in _noteHolder) Destroy(child.gameObject);
+
+            _audioSource.clip = level.musicClip;
+            _audioSource.PlayDelayed(1.0f);
+            _dspSongTime = (float)AudioSettings.dspTime + 1.0f;
+            _isPlaying = true;
+
+            Debug.Log($"Bắt đầu game! Cần đạt {_targetScoreToWin} điểm để thắng.");
+        }
+
+        private void Update()
+        {
+            if (!_isPlaying || _isGameFinished) return;
+
+            float songPosition = (float)(AudioSettings.dspTime - _dspSongTime);
+            float songPositionInBeats = songPosition / _secPerBeat;
+
+            // 1. Spawn Note (Chọn ngẫu nhiên 1 trong 4 góc)
+            if (_nextIndexToSpawn < _currentLevel.noteBeats.Count)
+            {
+                float nextBeat = _currentLevel.noteBeats[_nextIndexToSpawn];
+                if (nextBeat - _beatsPrespawn <= songPositionInBeats)
+                {
+                    SpawnNote(nextBeat);
+                    _nextIndexToSpawn++;
+                }
+            }
+
+            // 2. Update Notes
+            for (int i = _activeNotes.Count - 1; i >= 0; i--)
+            {
+                RhythmNote note = _activeNotes[i];
+                note.ManualUpdate(songPositionInBeats);
+
+                if (note.IsMissed)
+                {
+                    HandleMiss();
+                    Destroy(note.gameObject);
+                    _activeNotes.RemoveAt(i);
+                }
+            }
+
+            // 3. Input
+            if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+            {
+                ProcessInput(songPosition);
+            }
+
+            // 4. Kiểm tra Kết Thúc (Hết nhạc và hết nốt)
+            bool finishedSpawning = _nextIndexToSpawn >= _currentLevel.noteBeats.Count;
+            bool noActiveNotes = _activeNotes.Count == 0;
+
+            // Thêm điều kiện: Nhạc đã chạy hết hoặc đã spawn hết nốt được một lúc
+            bool musicEnded = !_audioSource.isPlaying || songPosition > _audioSource.clip.length;
+
+            if (finishedSpawning && noActiveNotes && musicEnded)
+            {
+                FinishGame();
+            }
+        }
+
+        private void SpawnNote(float beat)
+        {
+            // --- LOGIC MỚI: Random vị trí ---
+            RectTransform randomSpawnPoint;
+            if (_spawnPoints.Count > 0)
+            {
+                int randomIndex = Random.Range(0, _spawnPoints.Count);
+                randomSpawnPoint = _spawnPoints[randomIndex];
+            }
+            else
+            {
+                Debug.LogError("Chưa gán Spawn Points vào List!");
+                return;
+            }
+
+            RhythmNote newNote = Instantiate(_notePrefab, _noteHolder);
+            // Setup với vị trí xuất phát ngẫu nhiên
+            newNote.Setup(beat, _beatsPrespawn, _secPerBeat, randomSpawnPoint.anchoredPosition, _targetPoint.anchoredPosition);
+
+            // Xoay nốt nhạc hướng về tâm (Optional - Để mũi tên quay đúng hướng)
+            Vector3 dir = _targetPoint.anchoredPosition - randomSpawnPoint.anchoredPosition;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            newNote.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            _activeNotes.Add(newNote);
+        }
+
+        private void ProcessInput(float songPosition)
+        {
+            RhythmNote hitNote = null;
+            float minDiff = float.MaxValue;
+
+            foreach (var note in _activeNotes)
+            {
+                float diff = Mathf.Abs(note.targetBeat * _secPerBeat - songPosition);
+                if (diff < minDiff)
+                {
+                    minDiff = diff;
+                    hitNote = note;
+                }
+            }
+
+            if (hitNote != null && minDiff <= _hitWindow)
+            {
+                // HIT! -> Cộng điểm
+                _currentScore++;
+                ShowFeedback("Perfect!", Color.green);
+                TriggerHeartbeat();
+                Destroy(hitNote.gameObject);
+                _activeNotes.Remove(hitNote);
+                UpdateUI();
+                if (_currentScore >= _targetScoreToWin)
+                {
+                    Victory();
+                }
+            }
+            else
+            {
+                ShowFeedback("Don't Panic!", Color.red);
+                TakeDamage();
+            }
+        }
+
+        private void HandleMiss()
+        {
+            ShowFeedback("Miss!", Color.red);
+            TakeDamage();
+        }
+
+        private void TakeDamage()
+        {
+            _currentHealth--;
+            if (_objectToShake != null) TriggerShake();
+            UpdateUI();
+            if (_currentHealth <= 0)
+            {
+                GameOver();
+            }
+        }
+
+        private void UpdateUI()
+        {
+            if (_healthText) _healthText.text = $"HP: {_currentHealth}";
+            if (_scoreText) _scoreText.text = $"Score: {_currentScore}/{_targetScoreToWin}";
+        }
+
+        private void ShowFeedback(string text, Color color)
+        {
+            if (_feedbackText)
+            {
+                _feedbackText.text = text;
+                _feedbackText.color = color;
+                CancelInvoke(nameof(ClearFeedback));
+                Invoke(nameof(ClearFeedback), 0.5f);
+            }
+        }
+        private void ClearFeedback() => _feedbackText.text = "";
+
+        private void FinishGame()
+        {
+            _isGameFinished = true;
+            _isPlaying = false;
+            _audioSource.Stop();
+
+            // --- LOGIC MỚI: Kiểm tra điểm số ---
+            if (_currentScore >= _targetScoreToWin)
+            {
+                Victory();
+            }
+            else
+            {
+                Debug.Log($"Thất bại! Chỉ đạt {_currentScore} điểm.");
+                ShowFeedback("FAILED...", Color.gray);
+                // Xử lý logic thua (Load lại màn hoặc Bad End)
+            }
+        }
+
+        private void GameOver()
+        {
+            _isGameFinished = true;
+            _isPlaying = false;
+            _audioSource.Stop();
+            ShowFeedback("GAME OVER", Color.red);
+            // Xử lý Bad End
+        }
+
+        private void Victory()
+        {
+            // 1. Dừng mọi hoạt động game
+            _isGameFinished = true;
+            _isPlaying = false;
+
+            // 2. Tắt nhạc ngay lập tức
+            _audioSource.Stop();
+
+            // 3. (Tùy chọn) Xóa sạch các nốt còn lại trên màn hình cho đẹp
+            foreach (var note in _activeNotes)
+            {
+                if (note != null) Destroy(note.gameObject);
+            }
+            _activeNotes.Clear();
+
+            // 4. Thông báo
+            Debug.Log("GOOD END: Đủ điểm! Chiến thắng!");
+            ShowFeedback("VICTORY!!", Color.yellow);
+
+            // TODO: Gọi lệnh chuyển Level hoặc hiện bảng Win tại đây
+        }
+    }
+}
+</code>
+
+Assets\GameName\Modules\RhythmGame\RhythmLevelSO.cs:
+<code>
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    [CreateAssetMenu(fileName = "NewRhythmLevel", menuName = "RhythmGame/LevelData")]
+    public class RhythmLevelSO : ScriptableObject
+    {
+        public string levelName;
+        public AudioClip musicClip;
+        public float bpm = 128;
+        public float noteSpeed;
+
+        [Header("Chart Data")]
+        
+        
+        // Thời điểm (tính bằng Beat) mà người chơi phải bấm trúng
+        // Ví dụ: 1.0, 2.0, 3.5, 4.0...
+        // Để tạo đoạn im lặng, chỉ cần không điền gì vào khoảng đó.
+        public List<float> noteBeats;
+    }
+}
+</code>
+
+Assets\GameName\Modules\RhythmGame\RhythmNote.cs:
+<code>
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+namespace Gamejam2026
+{
+    public class RhythmNote : MonoBehaviour
+    {
+        public float targetBeat; // Beat mục tiêu cần bấm trúng
+        private float _spawnBeat;
+        private float _beatDuration; // 1 beat mất bao nhiêu giây
+        private Vector2 _startPos;
+        private Vector2 _endPos;
+        private RectTransform _rectTransform;
+        private bool _isMissed = false;
+
+        public bool IsMissed => _isMissed;
+
+        public void Setup(float targetBeat, float beatsPrespawn, float beatDuration, Vector2 startPos, Vector2 endPos)
+        {
+            _rectTransform = GetComponent<RectTransform>();
+            this.targetBeat = targetBeat;
+            this._beatDuration = beatDuration;
+            this._startPos = startPos;
+            this._endPos = endPos;
+
+            // Tính toán nốt này sinh ra ở beat nào
+            _spawnBeat = targetBeat - beatsPrespawn;
+
+            // Đặt vị trí ban đầu
+            _rectTransform.anchoredPosition = startPos;
+        }
+
+        public void ManualUpdate(float currentSongBeat)
+        {
+            // Tính toán tiến độ di chuyển (0 là ở chỗ spawn, 1 là ở đích)
+            // Công thức: (Beat hiện tại - Beat sinh ra) / (Tổng số beat để bay đến đích)
+            float progress = (currentSongBeat - _spawnBeat) / (targetBeat - _spawnBeat);
+
+            _rectTransform.anchoredPosition = Vector2.LerpUnclamped(_startPos, _endPos, progress);
+
+            // Nếu đi quá đích một đoạn mà chưa bị destroy -> Miss
+            if (progress > 1.2f && !_isMissed)
+            {
+                _isMissed = true;
+                // Báo cho Manager biết là đã trượt (nếu cần xử lý visual ở đây)
+            }
+        }
+    }
+}
+</code>
+
 Assets\GameName\Modules\TMPConsole\TMPConsoleController.cs:
 <code>
 using OurUtils;
@@ -794,6 +1554,19 @@ namespace Gamejam2026
     public class TemplateConstants
     {
         public const string TEMPLATE_STRING = "TEMPLATE_STRING";
+    }
+}
+</code>
+
+Assets\GameName\Scripts\Constants\UIConstant.cs:
+<code>
+using UnityEngine;
+
+namespace Gamejam2026
+{
+    public class UIConstant
+    {
+        public const string GAME_NAME = "Gâu đần";
     }
 }
 </code>
@@ -1452,7 +2225,27 @@ namespace Gamejam2026
         private StoryNode _currentNode;
         private int _currentScore = 0;
         private string _currentLevelId;
-        public Sprite GetSpecialItem(string id) => _resources.GetSpecialItem(id);
+        public Sprite GetSpecialItem(string id)
+        {
+            if (_resources == null)
+            {
+                Debug.LogError("LỖI CỰC LỚN: Bạn chưa gán file 'Test Resources' vào VisualNovelManager!");
+                return null;
+            }
+
+            Sprite s = _resources.GetSpecialItem(id);
+
+            if (s == null)
+            {
+                Debug.LogError($"Tìm thấy file Resources, nhưng không tìm thấy item có tên: '{id}'. Hãy kiểm tra lại chính tả ID.");
+            }
+            else
+            {
+                Debug.Log($"Đã tìm thấy Item '{id}' thành công! Nếu không hiện thì do lỗi UI.");
+            }
+
+            return s;
+        }
 
         // Load from JSON
         public void LoadStory(string jsonFileName)
@@ -1565,7 +2358,7 @@ namespace Gamejam2026
         [SerializeField] private Button _optionButtonPrefab;
 
         [Header("Text Styles")]
-        [SerializeField] private Color _normalTextColor = Color.white;
+        [SerializeField] private Color _normalTextColor = Color.black;
         [SerializeField] private Color _thoughtTextColor = new Color(0.8f, 0.8f, 1f, 1f);
         [SerializeField] private TMP_FontAsset _normalFont;
         [SerializeField] private TMP_FontAsset _thoughtFont;
@@ -1577,7 +2370,8 @@ namespace Gamejam2026
         public void ToggleUIVisibility(bool isVisible)
         {
             gameObject.SetActive(isVisible);
-            if (!isVisible && _specialItemImage != null) _specialItemImage.gameObject.SetActive(false);
+            // Reset trạng thái khi tắt/bật UI
+            if (isVisible && _specialItemImage != null) _specialItemImage.gameObject.SetActive(false);
         }
 
         public async void DisplayNode(StoryNode node, Action onFinished)
@@ -1586,35 +2380,43 @@ namespace Gamejam2026
             int myId = _currentTypingId;
 
             ToggleUIVisibility(true);
-
-            // Ẩn ảnh item cũ đi mỗi khi qua node mới
-            if (_specialItemImage != null) _specialItemImage.gameObject.SetActive(false);
-
             foreach (Transform child in _optionsParent) Destroy(child.gameObject);
 
             foreach (var line in node.dialogueLines)
             {
                 if (myId != _currentTypingId) return;
 
-                // 1. Xử lý lệnh đặc biệt !!
-                if (line.text.StartsWith("!!"))
-                {
-                    HandleSpecialCommand(line.text);
-                    // Lệnh đặc biệt thường không cần đợi user click, hoặc đợi 1 chút rồi qua
-                    await Task.Delay(1500);
-                    continue;
-                }
-
-                // 2. Cập nhật hình ảnh & Style chữ
+                // 1. Cập nhật Visual (Nhân vật, Nền) TRƯỚC KHI xử lý lệnh
+                // Điều này đảm bảo nhân vật không bị mất dù dòng đó là lệnh
                 UpdateVisuals(line);
                 ApplyTextStyle(line.characterId);
 
-                // 3. Chạy chữ (Logic tua nhanh nằm trong này)
+                // 2. Xử lý lệnh đặc biệt !!
+                if (line.text.StartsWith("!!"))
+                {
+                    bool success = HandleSpecialCommand(line.text);
+                    if (success)
+                    {
+                        // Nếu hiện item thành công, đợi 1.5s để người chơi nhìn
+                        await WaitForInputNext(myId);
+                    }
+                    else
+                    {
+                        // Nếu lỗi (không tìm thấy ảnh), bỏ qua nhanh
+                        await Task.Delay(100);
+                    }
+                    continue; // Bỏ qua việc chạy chữ, sang dòng tiếp theo luôn
+                }
+
+                // 3. Nếu là thoại thường -> Phải ẩn Item đi (Fix lỗi item không ẩn)
+                if (_specialItemImage != null) _specialItemImage.gameObject.SetActive(false);
+
+                // 4. Chạy chữ
                 await PlayDialogueSequence(line.text, myId);
 
                 if (myId != _currentTypingId) return;
 
-                // 4. Đợi click lần nữa để qua câu tiếp theo
+                // 5. Đợi click
                 await WaitForInputNext(myId);
             }
 
@@ -1623,37 +2425,70 @@ namespace Gamejam2026
                 onFinished?.Invoke();
             }
         }
-        private void HandleSpecialCommand(string commandText)
+
+        private bool HandleSpecialCommand(string commandText)
         {
             // Cấu trúc: !!ITEM_ID
-            string itemId = commandText.Substring(2).Trim(); // Cắt bỏ 2 dấu !!
+            string itemId = commandText.Substring(2).Trim();
 
             Sprite itemSprite = VisualNovelManager.Instance.GetSpecialItem(itemId);
 
             if (_specialItemImage != null && itemSprite != null)
             {
                 _specialItemImage.sprite = itemSprite;
-                _specialItemImage.gameObject.SetActive(true);
-                // Có thể thêm hiệu ứng Sound ở đây
+                _specialItemImage.gameObject.SetActive(true); // Bật ảnh lên
+                _specialItemImage.preserveAspect = true; // Giữ tỉ lệ ảnh không bị méo
+
+                // Xóa text để tập trung vào item
+                _dialogueText.text = "";
+                _nameText.text = "";
+                return true;
             }
             else
             {
-                Debug.LogWarning($"Không tìm thấy item hoặc chưa gán Image cho: {itemId}");
+                Debug.LogWarning($"[VisualNovelUI] Không tìm thấy item ID '{itemId}' trong ResourcesSO hoặc chưa gán Image vào Inspector.");
+                return false;
+            }
+        }
+
+        private void UpdateVisuals(DialogueLine line)
+        {
+            var bgSprite = VisualNovelManager.Instance.GetBackground(line.backgroundId);
+
+            // Lấy ảnh nhân vật. Nếu id rỗng, giữ nguyên ảnh cũ (để không bị mất nhân vật khi hiện item)
+            // Trừ khi bạn muốn ẩn nhân vật thì cần gán id="none" hoặc logic riêng.
+            Sprite charSprite = null;
+            if (!string.IsNullOrEmpty(line.characterId))
+            {
+                charSprite = VisualNovelManager.Instance.GetCharacter(line.characterId, line.faceId);
             }
 
-            _dialogueText.text = "";
-            _nameText.text = "";
+            if (bgSprite != null) _backgroundImage.sprite = bgSprite;
+
+            // Logic hiển thị nhân vật:
+            // Chỉ cập nhật nếu tìm thấy sprite mới. 
+            // Nếu line.characterId rỗng (ví dụ dòng lệnh), ta KHÔNG làm gì cả -> Giữ nguyên nhân vật đang đứng đó.
+            if (charSprite != null)
+            {
+                _characterImage.gameObject.SetActive(true);
+                _characterImage.sprite = charSprite;
+                _characterImage.preserveAspect = true;
+            }
+            //else if (line.characterId == "narrator" || line.characterId == "player")
+            //{
+            //    // Nếu là người dẫn chuyện hoặc player suy nghĩ -> Ẩn ảnh nhân vật đối diện
+            //    _characterImage.gameObject.SetActive(false);
+            //}
         }
+
+        // ... (Giữ nguyên các hàm ApplyTextStyle, PlayDialogueSequence, WaitForInputNext, OnClickScreen, ShowOptions như cũ)
         private void ApplyTextStyle(string characterId)
         {
-            // Yêu cầu: Nếu là player -> Tiếng lòng -> Chữ nghiêng/Màu khác
-            if (characterId.ToLower() == "player") // Giả sử ID của người chơi là "player"
+            if (characterId.ToLower() == "player")
             {
                 _dialogueText.fontStyle = FontStyles.Italic;
                 _dialogueText.color = _thoughtTextColor;
                 if (_thoughtFont) _dialogueText.font = _thoughtFont;
-
-                // Tên hiển thị có thể để trống hoặc để "Tôi"
                 _nameText.text = "";
             }
             else
@@ -1661,29 +2496,7 @@ namespace Gamejam2026
                 _dialogueText.fontStyle = FontStyles.Normal;
                 _dialogueText.color = _normalTextColor;
                 if (_normalFont) _dialogueText.font = _normalFont;
-
                 _nameText.text = characterId;
-            }
-        }
-
-
-        private void UpdateVisuals(DialogueLine line)
-        {
-            var bgSprite = VisualNovelManager.Instance.GetBackground(line.backgroundId);
-            var charSprite = VisualNovelManager.Instance.GetCharacter(line.characterId, line.faceId);
-
-            if (bgSprite != null) _backgroundImage.sprite = bgSprite;
-
-            if (charSprite != null)
-            {
-                _characterImage.gameObject.SetActive(true);
-                _characterImage.sprite = charSprite;
-            }
-            else
-            {
-                // Nếu không có ảnh char (ví dụ Player đang suy nghĩ), ẩn ảnh đi
-                // Hoặc nếu là narrator
-                _characterImage.gameObject.SetActive(false);
             }
         }
 
@@ -1692,29 +2505,22 @@ namespace Gamejam2026
             _isTyping = true;
             _skipRequested = false;
             _dialogueText.text = "";
-
             char[] chars = dialogueLine.ToCharArray();
-
             for (int i = 0; i < chars.Length; i++)
             {
                 if (checkId != _currentTypingId) return;
-
-                // Nếu người dùng click trong lúc đang chạy -> Hiện full luôn và thoát vòng lặp
                 if (_skipRequested || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                 {
                     _dialogueText.text = dialogueLine;
-                    await Task.Delay(100); // Delay nhẹ để tránh click đúp sang câu sau luôn
+                    await Task.Delay(100);
                     break;
                 }
-
                 _dialogueText.text += chars[i];
-                await Task.Delay(20); // Tốc độ chạy chữ (giảm xuống cho mượt)
+                await Task.Delay(20);
             }
-
             _isTyping = false;
             _skipRequested = false;
         }
-
 
         private async Task WaitForInputNext(int checkId)
         {
@@ -1726,25 +2532,19 @@ namespace Gamejam2026
             await Task.Delay(100);
         }
 
-
         public void OnClickScreen()
         {
-            if (_isTyping)
-            {
-                _skipRequested = true;
-            }
+            if (_isTyping) _skipRequested = true;
         }
 
         public void ShowOptions(List<Option> options, Action<Option> onSelected)
         {
             if (_optionButtonPrefab == null) return;
-
             foreach (var opt in options)
             {
                 Button btn = Instantiate(_optionButtonPrefab, _optionsParent);
                 var tmpText = btn.GetComponentInChildren<TextMeshProUGUI>();
                 if (tmpText != null) tmpText.text = opt.text;
-
                 btn.onClick.AddListener(() =>
                 {
                     foreach (Transform child in _optionsParent) Destroy(child.gameObject);

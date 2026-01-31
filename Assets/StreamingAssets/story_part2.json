@@ -1,0 +1,38 @@
+{
+  "levelId": "VN2",
+  "startNodeId": "therapy_start",
+  "nodes": [
+    {
+      "nodeId": "therapy_start",
+      "dialogueLines": [
+        { "characterId": "doctor", "faceId": "default", "backgroundId": "table", "text": "I understand. Losing a mental anchor is devastating." }
+      ],
+      "options": [
+        { "text": "We must accept reality.", "nextNodeId": "advice_harsh", "scoreDelta": 0 },
+        { "text": "Let's find a way to heal together.", "nextNodeId": "advice_gentle", "scoreDelta": 10 }
+      ]
+    },
+    {
+      "nodeId": "advice_harsh",
+      "dialogueLines": [
+        { "characterId": "patient", "faceId": "fear", "backgroundId": "table", "text": "Accept it? It hurts so much..." }
+      ],
+      "nextNodeId": "pre_minigame"
+    },
+    {
+      "nodeId": "advice_gentle",
+      "dialogueLines": [
+        { "characterId": "patient", "faceId": "sit_hand_on_knee", "backgroundId": "table", "text": "Heal? Is that even possible?" }
+      ],
+      "nextNodeId": "pre_minigame"
+    },
+    {
+      "nodeId": "pre_minigame",
+      "dialogueLines": [
+        { "characterId": "doctor", "faceId": "default", "backgroundId": "table", "text": "Let's try a breathing exercise to calm your heart beat." },
+        { "characterId": "player", "faceId": "default", "backgroundId": "table", "text": "(Starting Music Therapy Session...)" }
+      ],
+      "nextNodeId": "SCENE:MinigameScene"
+    }
+  ]
+}

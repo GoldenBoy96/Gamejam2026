@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2148fd2f2bf8404dbed25401c5762dc, type: 3}
+  m_Name: VisualNovelResourcesSO
+  m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.VisualNovelResourcesSO
+  _characterSprites:
+  - characterId: doctor
+    faceId: 
+    sprite: {fileID: 0}
+  - characterId: patient
+    faceId: 
+    sprite: {fileID: -7507346280330510195, guid: f443def2ceeb2d446aae3ded6e003723, type: 3}
+  - characterId: player
+    faceId: 
+    sprite: {fileID: 0}
+  - characterId: narrator
+    faceId: 
+    sprite: {fileID: 0}
+  _backgrounds:
+  - backgroundId: table
+    sprite: {fileID: 5155163167032735316, guid: 0a6d088b870cbe74c82cb1f2c24424b5, type: 3}
+  - backgroundId: bed
+    sprite: {fileID: 6937817954938267909, guid: a9e101ac4aa2a6a46a53cb91d1c8bbf7, type: 3}
+  _specialItems:
+  - itemId: key_card
+    sprite: {fileID: 0}
