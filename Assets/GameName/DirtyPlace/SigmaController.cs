@@ -19,8 +19,12 @@ public class SigmaController : MonoBehaviour
         yield return StartCoroutine(MoveImage(new Vector2(-198, -272), 1.4f));
 
         yield return StartCoroutine(MoveImage(new Vector2(-82, -411), 2.4f));
+        yield return new WaitForSeconds(1.0f);
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("VisualNovelScene");
 
         Debug.Log("Đã di chuyển xong tất cả các bước!");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("IntroScene");
+
     }
 
     IEnumerator MoveImage(Vector2 targetPosition, float duration)

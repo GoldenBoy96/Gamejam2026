@@ -11,20 +11,18 @@ namespace Gamejam2026
 
         public void StartGameWithDifficult1()
         {
-            // UnityEngine.SceneManagement.SceneManager.LoadScene("VisualNovelScene");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SigmaScene");
             Debug.Log("Bắt đầu trò chơi!");
         }
 
         public void StartGameWithDifficult2()
         {
-            // Logic để bắt đầu trò chơi
-            // go to the Difficulty Selection Scene or the main game scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SigmaScene");
             Debug.Log("Bắt đầu trò chơi!");
         }
 
         public void Back()
         {
-            // Logic để thoát trò chơi
             UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
             Debug.Log("Thoát trò chơi!");
         }
@@ -32,7 +30,7 @@ namespace Gamejam2026
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            difficult1Button.onClick.AddListener(Back);
+            difficult1Button.onClick.AddListener(StartGameWithDifficult1);
             difficult2Button.onClick.AddListener(StartGameWithDifficult2);
             backButton.onClick.AddListener(Back);
         }
