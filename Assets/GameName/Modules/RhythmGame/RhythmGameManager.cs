@@ -29,16 +29,98 @@ namespace Gamejam2026
 
         [Header("Game State")]
         [SerializeField] private int _maxHealth = 3;
+
+
+        [Header("Shake FX")]
+        [SerializeField] private Transform _objectToShake;
+        [SerializeField] private float _shakeDuration = 0.2f; 
+        [SerializeField] private float _shakeMagnitude = 0.5f; 
+
         private int _currentHealth;
-        private int _currentScore = 0; // Biến đếm điểm
+        private int _currentScore = 0; 
         private float _secPerBeat;
         private float _dspSongTime;
-        private float _beatsPrespawn; // Tính toán tự động
+        private float _beatsPrespawn;
         private bool _isPlaying = false;
         private bool _isGameFinished = false;
 
+        private Vector3 _originalPos;
+        private Coroutine _shakeCoroutine;
+
         private int _nextIndexToSpawn = 0;
         private List<RhythmNote> _activeNotes = new List<RhythmNote>();
+
+        private Coroutine _pulseCoroutine;
+
+        private void TriggerShake()
+        {
+            if (_shakeCoroutine == null)
+            {
+                _originalPos = _objectToShake.localPosition;
+            }
+            else
+            {
+                StopCoroutine(_shakeCoroutine);
+            }
+
+            _shakeCoroutine = StartCoroutine(ShakeCoroutine());
+        }
+
+        private System.Collections.IEnumerator ShakeCoroutine()
+        {
+            float elapsed = 0.0f;
+
+            while (elapsed < _shakeDuration)
+            {
+                // Tạo độ lệch ngẫu nhiên
+                float x = Random.Range(-1f, 1f) * _shakeMagnitude;
+                float y = Random.Range(-1f, 1f) * _shakeMagnitude;
+
+                _objectToShake.localPosition = _originalPos + new Vector3(x, y, 0);
+
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            // Trả về vị trí cũ
+            _objectToShake.localPosition = _originalPos;
+            _shakeCoroutine = null;
+        }
+
+        private void TriggerHeartbeat()
+        {
+            // Nếu đang có hiệu ứng đập dở thì dừng lại để đập cái mới (giúp spam nút không bị lỗi)
+            if (_pulseCoroutine != null) StopCoroutine(_pulseCoroutine);
+
+            _pulseCoroutine = StartCoroutine(PulseCoroutine());
+        }
+        private System.Collections.IEnumerator PulseCoroutine()
+        {
+            float duration = 0.1f; // Thời gian phóng to (nhanh)
+            float elapsedTime = 0f;
+            Vector3 originalScale = Vector3.one; // Size gốc (1,1,1)
+            Vector3 targetScale = Vector3.one * 1.3f; // Phóng to lên 1.3 lần
+
+            // Giai đoạn 1: Phóng to
+            while (elapsedTime < duration)
+            {
+                _targetPoint.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            _targetPoint.localScale = targetScale;
+
+            // Giai đoạn 2: Thu nhỏ về lại
+            elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                _targetPoint.localScale = Vector3.Lerp(targetScale, originalScale, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            _targetPoint.localScale = originalScale;
+        }
 
         private void Start()
         {
@@ -184,6 +266,7 @@ namespace Gamejam2026
                 // HIT! -> Cộng điểm
                 _currentScore++;
                 ShowFeedback("Perfect!", Color.green);
+                TriggerHeartbeat();
                 Destroy(hitNote.gameObject);
                 _activeNotes.Remove(hitNote);
                 UpdateUI();
@@ -208,6 +291,7 @@ namespace Gamejam2026
         private void TakeDamage()
         {
             _currentHealth--;
+            if (_objectToShake != null) TriggerShake();
             UpdateUI();
             if (_currentHealth <= 0)
             {
