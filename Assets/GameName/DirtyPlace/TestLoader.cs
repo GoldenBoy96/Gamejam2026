@@ -5,6 +5,6 @@ public class TestLoader : MonoBehaviour
 {
     public void ClickToLoadStory()
     {
-        VisualNovelManager.Instance.LoadStory("story_test.json");
+        VisualNovelManager.Instance.LoadStory("test.json");
     }
 }

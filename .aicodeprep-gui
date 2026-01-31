@@ -8,9 +8,9 @@
 version=1.0
 
 [window]
-width=1920
+width=1001
 height=1057
-splitter_state=AAAA/wAAAAEAAAACAAAB4AAAAAAB/////wEAAAACAA==
+splitter_state=AAAA/wAAAAEAAAACAAADAAAAAPwB/////wEAAAACAA==
 
 [format]
 output_format=xml
@@ -20,11 +20,10 @@ preview_window_enabled=false
 syntax_highlight_enabled=false
 
 [files]
-.vs\Assembly-CSharp-firstpass.csproj.dtbcache.json
-.vs\Assembly-CSharp.csproj.dtbcache.json
 .vs\Gamejam2026\v17\DocumentLayout.backup.json
 .vs\Gamejam2026\v17\DocumentLayout.json
 Assets\GameName\DirtyPlace\README.txt
+Assets\GameName\DirtyPlace\TestLoader.cs
 Assets\GameName\Modules\Audio\Scripts\AudioData.cs
 Assets\GameName\Modules\Audio\Scripts\AudioDataSO.cs
 Assets\GameName\Modules\Audio\Scripts\AudioManager.cs
@@ -71,6 +70,5 @@ Assets\GameName\Scripts\Views\UIController\TemplateControllerUI\TemplateUIContro
 Assets\GameName\Scripts\Views\UIManager\README.txt
 Assets\GameName\Scripts\Views\UIManager\TemplateUIManager.cs
 Packages\manifest.json
-Packages\packages-lock.json
 ProjectSettings\ProjectVersion.txt
 ProjectSettings\SceneTemplateSettings.json
