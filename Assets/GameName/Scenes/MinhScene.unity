@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50cef3123e072bb4d8c162b2077beaed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.AudioManager
-  _audioDataSO: {fileID: 0}
+  _audioDataSO: {fileID: 11400000, guid: 3f82c1a2a8e6b8e4ba32430447455a5e, type: 2}
   _soundList: []
   _musicList: []
   _isEnableSound: 0
@@ -520,7 +520,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8ecead08dfc6f49be8cedc056e8956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisualNovelUI
+  _backgroundImage: {fileID: 0}
+  _characterImage: {fileID: 0}
+  _specialItemImage: {fileID: 0}
   _dialogueText: {fileID: 396418147}
+  _nameText: {fileID: 0}
+  _optionsParent: {fileID: 0}
+  _optionButtonPrefab: {fileID: 0}
+  _normalTextColor: {r: 0, g: 0, b: 0, a: 1}
+  _thoughtTextColor: {r: 0.8, g: 0.8, b: 1, a: 1}
+  _normalFont: {fileID: 0}
+  _thoughtFont: {fileID: 0}
 --- !u!1 &1124836776
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623262adc28f6a447a6414330506a8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.VisualNovelManager
+  _resources: {fileID: 0}
+  _ui: {fileID: 0}
 --- !u!1001 &8618409101286813796
 PrefabInstance:
   m_ObjectHideFlags: 0

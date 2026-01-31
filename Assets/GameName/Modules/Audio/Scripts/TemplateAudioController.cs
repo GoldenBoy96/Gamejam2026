@@ -69,5 +69,6 @@ namespace Gamejam2026
         public const string gaining_experience = "gaining_experience";
         public const string open_chest = "open_chest";
         public const string zombie_roar = "zombie_roar";
+        public const string click_sound = "click_sound";
     }
 }

@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
         AudioManager.Instance.SetAudioData(_audioDataSO);
         for (int i = 0; i < 100; i++)
         {
-            await Task.Delay(1000); 
+            await Task.Delay(1000);
             PlayRandomSound();
         }
 
@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
         switch (ran)
         {
             case 0:
-                AudioManager.Instance.PlaySound(TemplateAudioConstants.eating);
+                AudioManager.Instance.PlaySound(TemplateAudioConstants.click_sound);
                 break;
             case 1:
                 AudioManager.Instance.PlaySound(TemplateAudioConstants.gaining_experience);

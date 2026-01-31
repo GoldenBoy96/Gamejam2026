@@ -21,8 +21,10 @@ MonoBehaviour:
     _volume: 1
   - _clip: {fileID: 8300000, guid: cb87ebf9eaa097447965769ed2e1588e, type: 3}
     _volume: 1
+  - _clip: {fileID: 8300000, guid: a218e2ec919278b4aa21763a65d17948, type: 3}
+    _volume: 1
   _musicList:
   - _clip: {fileID: 8300000, guid: c5f6dfec83bf64b4fb04c5a62d9f1d86, type: 3}
-    _volume: 0.1
+    _volume: 0.531
   - _clip: {fileID: 8300000, guid: 5fc08459a49e50745ac35063802aac03, type: 3}
-    _volume: 1
+    _volume: 0.554

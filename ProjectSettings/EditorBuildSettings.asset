@@ -18,8 +18,14 @@ EditorBuildSettings:
     path: Assets/GameName/Scenes/IntroScene.unity
     guid: fe287811ce728594493aead7190123f9
   - enabled: 1
-    path: Assets/GameName/Scenes/SigmaScene.unity
+    path: Assets/GameName/Scenes/SigmaScene2.unity
     guid: dc6fc1e17bf868044a429b2bff362ded
+  - enabled: 1
+    path: Assets/GameName/Scenes/SigmaScene1.unity
+    guid: 88310992bd82044448bf4fcd36daf88e
+  - enabled: 1
+    path: Assets/GameName/Scenes/NovelUIOK.unity
+    guid: efd60e509d8ebd645985a03b5ce7aaf4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

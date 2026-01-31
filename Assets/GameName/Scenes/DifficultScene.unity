@@ -965,7 +965,6 @@ GameObject:
   - component: {fileID: 1330867526}
   - component: {fileID: 1330867529}
   - component: {fileID: 1330867528}
-  - component: {fileID: 1330867527}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -995,21 +994,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1330867527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330867525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06c4cac5ff018a743aa108d2c25b6cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.DifficultController
-  difficult1Button: {fileID: 1103775662}
-  difficult2Button: {fileID: 135512870}
-  backButton: {fileID: 1833361170}
 --- !u!114 &1330867528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,6 +1032,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330867525}
   m_CullTransparentMesh: 1
+--- !u!1 &1493512041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493512044}
+  - component: {fileID: 1493512042}
+  - component: {fileID: 1493512043}
+  m_Layer: 0
+  m_Name: DifficultController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1493512042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493512041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c4cac5ff018a743aa108d2c25b6cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.DifficultController
+  _audioDataSO: {fileID: 11400000, guid: 3f82c1a2a8e6b8e4ba32430447455a5e, type: 2}
+  difficult1Button: {fileID: 1103775662}
+  difficult2Button: {fileID: 135512870}
+  backButton: {fileID: 1833361170}
+  delayDuration: 0.1
+--- !u!114 &1493512043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493512041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50cef3123e072bb4d8c162b2077beaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gamejam2026.AudioManager
+  _audioDataSO: {fileID: 0}
+  _soundList: []
+  _musicList: []
+  _isEnableSound: 1
+  _isEnableMusic: 1
+  _isEnableVibrate: 0
+  _masterVolume: 0.5
+  _soundVolume: 0.5
+  _musicVolume: 0.5
+--- !u!4 &1493512044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493512041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15151, y: -0.30303, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1519918385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,7 +1266,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0110\u1ED1 m\xE0y ch\u01A1i \u0111\u01B0\u1EE3c"
+  m_text: "\u0110\u1ED1 b\u1EA1n ch\u01A1i \u0111\u01B0\u1EE3c"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
   m_sharedMaterial: {fileID: -678912925183390448, guid: dfd945f5dc2304540abfeb6991d7f8fe, type: 2}
@@ -1327,7 +1382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1106, y: 548}
+  m_AnchoredPosition: {x: -815, y: 418}
   m_SizeDelta: {x: 160, y: 153.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1833361170
@@ -1416,6 +1471,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1493512044}
   - {fileID: 1288473878}
   - {fileID: 1023135428}
   - {fileID: 1139317442}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,37 +6,44 @@ namespace Gamejam2026
 {
     public class MenuController : MonoBehaviour
     {
+        [SerializeField] AudioDataSO _audioDataSO;
         public Button startButton;
         public Button settingsButton;
         public Button exitButton;
+        public float delayDuration = 0.3f;
 
-        public void StartGame()
+        IEnumerator StartGame() // Tạo một Coroutine mới
         {
-            // Logic để bắt đầu trò chơi
-            // go to the Difficulty Selection Scene or the main game scene
+            AudioManager.Instance.PlaySound(TemplateAudioConstants.click_sound);
+            yield return new WaitForSeconds(delayDuration);
             UnityEngine.SceneManagement.SceneManager.LoadScene("DifficultScene");
             Debug.Log("Bắt đầu trò chơi!");
         }
 
-        public void OpenSettings()
+        IEnumerator OpenSettings()
         {
-            // Logic để mở menu cài đặt
+            AudioManager.Instance.PlaySound(TemplateAudioConstants.click_sound);
+            yield return new WaitForSeconds(delayDuration);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("DifficultScene");
             Debug.Log("Mở cài đặt!");
         }
 
-        public void ExitGame()
+        IEnumerator ExitGame()
         {
-            // Logic để thoát trò chơi
-            Debug.Log("Thoát trò chơi!");
+            AudioManager.Instance.PlaySound(TemplateAudioConstants.click_sound);
+            yield return new WaitForSeconds(delayDuration);
             Application.Quit();
+            Debug.Log("Thoát trò chơi!");
+            yield return null;
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            startButton.onClick.AddListener(StartGame);
-            settingsButton.onClick.AddListener(OpenSettings);
-            exitButton.onClick.AddListener(ExitGame);
+            AudioManager.Instance.SetAudioData(_audioDataSO);
+            startButton.onClick.AddListener(() => StartCoroutine(StartGame()));
+            settingsButton.onClick.AddListener(() => StartCoroutine(OpenSettings()));
+            exitButton.onClick.AddListener(() => StartCoroutine(ExitGame()));
         }
 
         // Update is called once per frame
