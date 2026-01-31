@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -36,9 +35,11 @@ public class IntroSlideshow : MonoBehaviour
             // 4. Fade Out (Mờ dần ra)
             yield return StartCoroutine(Fade(1, 0));
         }
+        yield return new WaitForSeconds(0.5f);
 
         // Sau khi chạy hết các slide, chuyển sang Scene tiếp theo
         // SceneManager.LoadScene(nextSceneName);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("NovelUIOK");
     }
 
     IEnumerator Fade(float startAlpha, float endAlpha)
