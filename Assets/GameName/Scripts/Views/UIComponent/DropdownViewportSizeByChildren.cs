@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -62,7 +61,7 @@ public class DropdownViewportSizeByChildren : MonoBehaviour
                     if (itemNumber > _maxChildShowAtATime) itemNumber = _maxChildShowAtATime;
                 }
 
-                Debug.Log(_limitSize + " | " + itemNumber + " | " + _templateItem.rect.height + " | " + itemNumber * _templateItem.rect.height); 
+                Debug.Log(_limitSize + " | " + itemNumber + " | " + _templateItem.rect.height + " | " + itemNumber * _templateItem.rect.height);
                 Vector2 newSize = new(
                     _templateContent.sizeDelta.x,
                     itemNumber * _templateItem.rect.height
